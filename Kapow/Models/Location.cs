@@ -11,5 +11,16 @@
         }
 
         public Location() { }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Location location &&
+                   Id == location.Id;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id);
+        }
     }
 }
