@@ -1,0 +1,10 @@
+﻿namespace Kapow.Models
+{
+    public class FoodTag
+    {
+        public int Id { get; set; }
+        public string? Name { get; set; }
+
+        public FoodTag() { }
+    }
+}

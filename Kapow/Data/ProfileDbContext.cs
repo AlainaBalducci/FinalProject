@@ -1,6 +1,6 @@
 ﻿namespace Kapow.Data
 {
-    public class UserDbContext
+    public class ProfileDbContext
     {
     }
 }
