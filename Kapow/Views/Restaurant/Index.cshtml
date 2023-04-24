@@ -1,0 +1,14 @@
+﻿<h1>
+    List of ALL RESTURANTS
+</h1>
+@foreach(var restaurant in ViewBag.restaurants)
+{
+    <br />
+    <ul>
+        <li> @restaurant.Name </li>
+        <li>@restaurant.Url</li>
+        <li>@restaurant.Location</li>
+        <li>@restaurant.FoodTag</li>
+    </ul>
+    <br />
+}

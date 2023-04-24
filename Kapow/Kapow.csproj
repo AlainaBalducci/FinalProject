@@ -26,7 +26,6 @@
   <ItemGroup>
     <Folder Include="Views\Location\" />
     <Folder Include="Views\FoodTag\" />
-    <Folder Include="Views\Restaurant\" />
     <Folder Include="Views\Profile\" />
   </ItemGroup>
 
