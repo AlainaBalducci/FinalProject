@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "59Zgnsey4rhwIbC7joTemq6E3GxvlLXxGBbBEulHnZ19B9pR/L+MhnD7Tqzhz3v6APM0kOeNn088wTj1nfz/ag==",
+  "dgSpecHash": "1MlSEgjYcAqCKVDoRhOYV11aNUbyVVtM8d7alcu+UTwioZ74vzmmVA6d7RXWpMhCly2KRZ0zfiJszzESstYfTw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\adagu\\C#-LC\\Final_Project\\FinalProject\\RestaurantApi\\RestaurantApi.csproj",
+  "projectFilePath": "C:\\Users\\adagu\\C#-LC\\Final_Project\\finalproject3\\FinalProject\\RestaurantApi\\RestaurantApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\adagu\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\adagu\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.15\\microsoft.entityframeworkcore.6.0.15.nupkg.sha512",

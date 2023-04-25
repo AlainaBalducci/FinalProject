@@ -25,10 +25,10 @@ namespace Kapow.Controllers
                 {
                     var RestaurantResponse = response.Content.ReadAsStringAsync().Result;
                     restaurants = JsonConvert.DeserializeObject<List<RestaurantDto>>(RestaurantResponse);
-                    ViewBag.restaurants = restaurants;
+                    //ViewBag.restaurants = restaurants;
                 }
             }
-            return View();
+            return View(restaurants);
         }
 
         public IActionResult Create() 

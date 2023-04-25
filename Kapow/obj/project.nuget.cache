@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zWpCTdz390nfl+x/z75M696Bd9zqMmJwTB8gs+UjuPPY2BENl1ugoK/sRmvFX50i3z8nxaRlWszS1ZVO8IJf6A==",
+  "dgSpecHash": "WHABmPUvHsy4vsHq2oc7nSaDUD1s3kFR51hL1emYrYXdCD/DJeSdb5GgEmigNfvcMG/4nxWJeg3zJbIjYZYR+Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\adagu\\C#-LC\\Final_Project\\FinalProject\\Kapow\\Kapow.csproj",
+  "projectFilePath": "C:\\Users\\adagu\\C#-LC\\Final_Project\\finalproject3\\FinalProject\\Kapow\\Kapow.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\adagu\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\adagu\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
