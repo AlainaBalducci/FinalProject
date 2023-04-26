@@ -56,7 +56,7 @@ namespace Kapow.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Search(string searchTerm, string searchType)
+        public async Task<IActionResult> Search(string selectTerm, string? keyword, string foodType, string searchType)
         {
 
             List<RestaurantDto> restaurants = new List<RestaurantDto>();
@@ -79,15 +79,38 @@ namespace Kapow.Controllers
             }
             if (searchType == "Name")
             {
-                foreach(var r in restaurants)
+                foreach (var r in restaurants)
                 {
-                    if(r.Location == searchTerm)
+                    if (r.Name == keyword)
                     {
                         test.Add(r);
                     }
                 }
             }
-            
+            else if (searchType == "Location")
+            {
+                foreach (var r in restaurants)
+                {
+                    if (r.Location == selectTerm)
+                    {
+                        test.Add(r);
+                    }
+                }
+            }
+            else if (searchType == "Food Type")
+            {
+               
+                    
+                foreach (var r in restaurants)
+                {
+                    int num = (int)r.FoodTag;
+                    if (num == Int32.Parse(foodType))
+                    {
+                        test.Add(r);
+                    }
+                }
+            }
+
 
 
 
