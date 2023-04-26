@@ -2,7 +2,87 @@
 <h1>
     List of ALL RESTURANTS
 </h1>
-@foreach(var restaurant in Model)
+
+<form action="Search" method="Post">
+    <h3>Search Type</h3>
+    <span>
+        <label>
+        <input type="radio"  name="searchType" value = "Name" checked> 
+        Name
+        </label>
+        <label>
+        <input type="radio"  name="searchType" value = "Location"> 
+        Location
+        </label>
+        <label>
+        <input type="radio"  name="searchType" value = "FoodType"> 
+        FoodType
+        </label>
+    </span>
+        <p>
+    <label for="searchTerm">Keyword:</label>
+    <input type="text" name="searchTerm" id="searchTerm" />
+        </p>
+    <input type="submit" value="Search" class="btn btn-success"/>
+</form>
+
+
+<div>
+@if (ViewBag.restaurants != null)
+{
+        @foreach (var r in ViewBag.restaurants)
+        {
+            <table class="job-listing">
+            <tr>
+                <th> Restaurant Name </th>
+                <td>@r.Name</td>
+            </tr>
+            <tr>
+                <th> Restaurant Location </th>
+                <td>@r.Location</td>
+            </tr>
+            <tr>
+                <th> Restaurant Foodtag </th>
+                <td>@r.FoodTag</td>
+            </tr>
+            <tr>
+                <th> Restaurant Website </th>
+                <td>@r.Url</td>
+            </tr>
+            </table>
+        }
+
+    }
+    else
+    {
+        foreach(var restaurant in Model)
+{
+    <table class="job-listing">
+            <tr>
+                <th> Restaurant Name </th>
+                <td>@restaurant.Name</td>
+            </tr>
+            <tr>
+                <th> Restaurant Location </th>
+                <td>@restaurant.Location</td>
+            </tr>
+            <tr>
+                <th> Restaurant Foodtag </th>
+                <td>@restaurant.FoodTag</td>
+            </tr>
+            <tr>
+                <th> Restaurant Website </th>
+                <td>@restaurant.Url</td>
+            </tr>
+            </table>
+}
+    }
+
+
+
+
+
+@*foreach(var restaurant in Model)
 {
     <br />
     <ul>
@@ -12,4 +92,4 @@
         <li>@restaurant.FoodTag</li>
     </ul>
     <br />
-}
+}*@

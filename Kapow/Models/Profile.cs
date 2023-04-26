@@ -10,7 +10,7 @@ namespace Kapow.Models
         //public string? Email { get; set; }
         public string? HomeBase { get; set; }
         public List<RestaurantDto>? Restaurants { get; set; }
-        public ICollection<FoodTag>? FoodTags { get; set; }
+        //public ICollection<FoodTag>? FoodTags { get; set; }
 
         public Profile(int id, string? userName, string? firstName, string? homeBase)
         {
@@ -20,7 +20,7 @@ namespace Kapow.Models
             //Email = email;
             HomeBase = homeBase;
             Restaurants = new List <RestaurantDto>();
-            FoodTags = new List<FoodTag>();
+            //FoodTags = new List<FoodTag>();
         }
 
         public Profile() { }
