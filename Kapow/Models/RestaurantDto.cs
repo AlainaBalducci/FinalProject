@@ -1,4 +1,6 @@
-﻿namespace Kapow.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Kapow.Models
 {
     public class RestaurantDto
     {
@@ -6,6 +8,7 @@
         public string? Name { get; set; }
         public string? Url { get; set; }
         public string? Location { get; set; }
+        [NotMapped]
         public FoodTag FoodTag { get; set; }
 
     }

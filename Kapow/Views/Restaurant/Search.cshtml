@@ -1,7 +1,7 @@
-﻿@model List<Kapow.Models.RestaurantDto>
-<h1>
-    List of ALL RESTURANTS
-</h1>
+﻿
+
+@model List<Kapow.Models.RestaurantDto>
+
 
 <form action="Search" method="Post">
     <h3>Search Type</h3>
@@ -27,35 +27,11 @@
 </form>
 
 
-<div>
-@if (ViewBag.restaurants != null)
-{
-        @foreach (var r in ViewBag.restaurants)
-        {
-            <table class="job-listing">
-            <tr>
-                <th> Restaurant Name </th>
-                <td>@r.Name</td>
-            </tr>
-            <tr>
-                <th> Restaurant Location </th>
-                <td>@r.Location</td>
-            </tr>
-            <tr>
-                <th> Restaurant Foodtag </th>
-                <td>@r.FoodTag</td>
-            </tr>
-            <tr>
-                <th> Restaurant Website </th>
-                <td>@r.Url</td>
-            </tr>
-            </table>
-        }
 
-    }
-    else
-    {
-        foreach(var restaurant in Model)
+
+
+
+@foreach(var restaurant in Model)
 {
     <table class="job-listing">
             <tr>
@@ -76,20 +52,3 @@
             </tr>
             </table>
 }
-    }
-
-
-
-
-
-@*foreach(var restaurant in Model)
-{
-    <br />
-    <ul>
-        <li>@restaurant.Name </li>
-        <li>@restaurant.Url</li>
-        <li>@restaurant.Location</li>
-        <li>@restaurant.FoodTag</li>
-    </ul>
-    <br />
-}*@

@@ -2,6 +2,8 @@
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using Kapow.Models;
+using Kapow.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Kapow.Controllers
 {
@@ -9,12 +11,59 @@ namespace Kapow.Controllers
     {
         //Baseurl will allow the controller to talk to the api through the local host.  i think
         string Baseurl = "https://localhost:7248";
+        private ProfileDbContext context;
+        
 
-
-        //Search bar function for list of restaurants
+        //Get request to list off all restaurants
         public async Task<IActionResult> Index()
         {
+            List<RestaurantDto> allRestaurants = new List<RestaurantDto>();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Baseurl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage response = await client.GetAsync("/api/restaurant");
+                if (response.IsSuccessStatusCode)
+                {
+                    var RestaurantResponse = response.Content.ReadAsStringAsync().Result;
+                    allRestaurants = JsonConvert.DeserializeObject<List<RestaurantDto>>(RestaurantResponse);
+                    
+                }
+            }
+            return View(allRestaurants);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Search()
+        {
+            List<RestaurantDto> allRestaurants = new List<RestaurantDto>();
+           
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Baseurl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage response = await client.GetAsync("/api/restaurant");
+                if (response.IsSuccessStatusCode)
+                {
+                    var RestaurantResponse = response.Content.ReadAsStringAsync().Result;
+                    allRestaurants = JsonConvert.DeserializeObject<List<RestaurantDto>>(RestaurantResponse);
+
+                }
+            }
+            return View(allRestaurants);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Search(string searchTerm, string searchType)
+        {
+
             List<RestaurantDto> restaurants = new List<RestaurantDto>();
+            List<RestaurantDto> test = new List<RestaurantDto>();
+
+
+            //GET data from api and house it in a variable
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(Baseurl);
@@ -28,15 +77,25 @@ namespace Kapow.Controllers
                     //ViewBag.restaurants = restaurants;
                 }
             }
-            return View(restaurants);
+            if (searchType == "Name")
+            {
+                foreach(var r in restaurants)
+                {
+                    if(r.Location == searchTerm)
+                    {
+                        test.Add(r);
+                    }
+                }
+            }
+            
+
+
+
+            return View("search", test);
         }
 
-        public IActionResult Create() 
-        {
-            return View();
-        }
 
-        public IActionResult Update() 
+        public IActionResult Result() 
         {
         return View();
         }

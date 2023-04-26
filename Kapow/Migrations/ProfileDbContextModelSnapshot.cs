@@ -19,47 +19,16 @@ namespace Kapow.Migrations
                 .HasAnnotation("ProductVersion", "6.0.15")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("Kapow.Models.FoodTag", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<int?>("ProfileId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("RestaurantId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProfileId");
-
-                    b.HasIndex("RestaurantId");
-
-                    b.ToTable("FoodTags");
-                });
-
             modelBuilder.Entity("Kapow.Models.Location", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("FoodTagId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("FoodTagId");
 
                     b.ToTable("Locations");
                 });
@@ -84,14 +53,14 @@ namespace Kapow.Migrations
                     b.ToTable("Profiles");
                 });
 
-            modelBuilder.Entity("Kapow.Models.Restaurant", b =>
+            modelBuilder.Entity("Kapow.Models.RestaurantDto", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("LocationId")
-                        .HasColumnType("int");
+                    b.Property<string>("Location")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Name")
                         .HasColumnType("longtext");
@@ -104,59 +73,21 @@ namespace Kapow.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LocationId");
-
                     b.HasIndex("ProfileId");
 
                     b.ToTable("Restaurants");
                 });
 
-            modelBuilder.Entity("Kapow.Models.FoodTag", b =>
+            modelBuilder.Entity("Kapow.Models.RestaurantDto", b =>
                 {
-                    b.HasOne("Kapow.Models.Profile", null)
-                        .WithMany("FoodTags")
-                        .HasForeignKey("ProfileId");
-
-                    b.HasOne("Kapow.Models.Restaurant", null)
-                        .WithMany("FoodTags")
-                        .HasForeignKey("RestaurantId");
-                });
-
-            modelBuilder.Entity("Kapow.Models.Location", b =>
-                {
-                    b.HasOne("Kapow.Models.FoodTag", null)
-                        .WithMany("Locations")
-                        .HasForeignKey("FoodTagId");
-                });
-
-            modelBuilder.Entity("Kapow.Models.Restaurant", b =>
-                {
-                    b.HasOne("Kapow.Models.Location", "Location")
-                        .WithMany()
-                        .HasForeignKey("LocationId");
-
                     b.HasOne("Kapow.Models.Profile", null)
                         .WithMany("Restaurants")
                         .HasForeignKey("ProfileId");
-
-                    b.Navigation("Location");
-                });
-
-            modelBuilder.Entity("Kapow.Models.FoodTag", b =>
-                {
-                    b.Navigation("Locations");
                 });
 
             modelBuilder.Entity("Kapow.Models.Profile", b =>
                 {
-                    b.Navigation("FoodTags");
-
                     b.Navigation("Restaurants");
-                });
-
-            modelBuilder.Entity("Kapow.Models.Restaurant", b =>
-                {
-                    b.Navigation("FoodTags");
                 });
 #pragma warning restore 612, 618
         }
