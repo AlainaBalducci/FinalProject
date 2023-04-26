@@ -1,11 +1,13 @@
 ﻿using System;
 using Kapow.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 
 namespace Kapow.Data
 {
-    public class ProfileDbContext : DbContext
+    public class ProfileDbContext : IdentityDbContext<IdentityUser>
     {
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<Restaurant> Restaurants { get; set; }
@@ -16,9 +18,19 @@ namespace Kapow.Data
         {
         }
 
-    //    public override void OnModelCreating(ModelBuilder modelBuilder)
-    //    {
-            
-    //    }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            SeedRoles(modelBuilder);
+        }
+
+        private void SeedRoles(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<IdentityRole>().HasData
+                (
+                new IdentityRole() { Name = "Admin", ConcurrencyStamp = "1", NormalizedName = "Admin" },
+                new IdentityRole() { Name = "User", ConcurrencyStamp = "2", NormalizedName = "User" }
+                );
+        }
     }
 }
