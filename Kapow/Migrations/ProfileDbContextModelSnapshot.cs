@@ -106,14 +106,14 @@ namespace Kapow.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "840f5bf4-1249-4044-8c90-ce30ccf636e9",
+                            Id = "09591dd5-29d5-4edb-abb9-3f165d08dcd0",
                             ConcurrencyStamp = "1",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
-                            Id = "5c510c4d-5852-4bda-a68b-9868c057e5eb",
+                            Id = "e80a8aec-f70e-4bf2-be8e-7ddac62a332e",
                             ConcurrencyStamp = "2",
                             Name = "User",
                             NormalizedName = "User"

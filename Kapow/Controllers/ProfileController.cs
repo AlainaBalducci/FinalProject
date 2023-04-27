@@ -1,9 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Kapow.Data;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Kapow.Controllers
 {
     public class ProfileController : Controller
     {
+
+        private ProfileDbContext context;
+
+        public ProfileController(ProfileDbContext dbContext)
+        {
+            context = dbContext;
+        }
+
         //List All Users
         public IActionResult Index()
         {
@@ -13,8 +22,16 @@ namespace Kapow.Controllers
         //Add/create Profile
         public IActionResult Create()
         {
+
             return View();
 
+        }
+
+        [HttpPost]
+        public IActionResult Create(string userName, string firstName, string homeBase, string imageUrl)
+        {
+
+            return View();
         }
 
         //Delete Restaurants
