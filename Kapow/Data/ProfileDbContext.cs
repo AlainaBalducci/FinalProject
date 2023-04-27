@@ -10,9 +10,9 @@ namespace Kapow.Data
     public class ProfileDbContext : IdentityDbContext<IdentityUser>
     {
         public DbSet<Profile> Profiles { get; set; }
-        public DbSet<Restaurant> Restaurants { get; set; }
+        public DbSet<RestaurantDto> Restaurants { get; set; }
         public DbSet<Location> Locations { get; set; }
-        public DbSet<FoodTag> FoodTags { get; set; }
+     
 
         public ProfileDbContext(DbContextOptions<ProfileDbContext> options) : base(options)
         {
