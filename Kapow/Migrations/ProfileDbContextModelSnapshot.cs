@@ -19,42 +19,16 @@ namespace Kapow.Migrations
                 .HasAnnotation("ProductVersion", "6.0.15")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("Kapow.Models.FoodTag", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<int?>("RestaurantId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RestaurantId");
-
-                    b.ToTable("FoodTags");
-                });
-
             modelBuilder.Entity("Kapow.Models.Location", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("FoodTagId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("FoodTagId");
 
                     b.ToTable("Locations");
                 });
@@ -79,14 +53,14 @@ namespace Kapow.Migrations
                     b.ToTable("Profiles");
                 });
 
-            modelBuilder.Entity("Kapow.Models.Restaurant", b =>
+            modelBuilder.Entity("Kapow.Models.RestaurantDto", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("LocationId")
-                        .HasColumnType("int");
+                    b.Property<string>("Location")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Name")
                         .HasColumnType("longtext");
@@ -98,8 +72,6 @@ namespace Kapow.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("LocationId");
 
                     b.HasIndex("ProfileId");
 
@@ -134,14 +106,14 @@ namespace Kapow.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "60493ff2-5bd5-4115-8601-16f7d588e3b5",
+                            Id = "840f5bf4-1249-4044-8c90-ce30ccf636e9",
                             ConcurrencyStamp = "1",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
-                            Id = "a2f0c903-4b77-43d8-85b2-37cbdac96e32",
+                            Id = "5c510c4d-5852-4bda-a68b-9868c057e5eb",
                             ConcurrencyStamp = "2",
                             Name = "User",
                             NormalizedName = "User"
@@ -318,31 +290,11 @@ namespace Kapow.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Kapow.Models.FoodTag", b =>
+            modelBuilder.Entity("Kapow.Models.RestaurantDto", b =>
                 {
-                    b.HasOne("Kapow.Models.Restaurant", null)
-                        .WithMany("FoodTags")
-                        .HasForeignKey("RestaurantId");
-                });
-
-            modelBuilder.Entity("Kapow.Models.Location", b =>
-                {
-                    b.HasOne("Kapow.Models.FoodTag", null)
-                        .WithMany("Locations")
-                        .HasForeignKey("FoodTagId");
-                });
-
-            modelBuilder.Entity("Kapow.Models.Restaurant", b =>
-                {
-                    b.HasOne("Kapow.Models.Location", "Location")
-                        .WithMany()
-                        .HasForeignKey("LocationId");
-
                     b.HasOne("Kapow.Models.Profile", null)
                         .WithMany("Restaurants")
                         .HasForeignKey("ProfileId");
-
-                    b.Navigation("Location");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -396,19 +348,9 @@ namespace Kapow.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Kapow.Models.FoodTag", b =>
-                {
-                    b.Navigation("Locations");
-                });
-
             modelBuilder.Entity("Kapow.Models.Profile", b =>
                 {
                     b.Navigation("Restaurants");
-                });
-
-            modelBuilder.Entity("Kapow.Models.Restaurant", b =>
-                {
-                    b.Navigation("FoodTags");
                 });
 #pragma warning restore 612, 618
         }
