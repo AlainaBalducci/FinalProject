@@ -11,7 +11,7 @@ namespace Kapow.Data
     {
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<RestaurantDto> Restaurants { get; set; }
-        public DbSet<Location> Locations { get; set; }
+       
      
 
         public ProfileDbContext(DbContextOptions<ProfileDbContext> options) : base(options)

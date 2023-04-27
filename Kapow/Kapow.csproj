@@ -7,6 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\FoodTag\**" />
+    <Compile Remove="Views\Location\**" />
+    <Content Remove="Views\FoodTag\**" />
+    <Content Remove="Views\Location\**" />
+    <EmbeddedResource Remove="Views\FoodTag\**" />
+    <EmbeddedResource Remove="Views\Location\**" />
+    <None Remove="Views\FoodTag\**" />
+    <None Remove="Views\Location\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.15" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.15">
@@ -24,8 +35,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Location\" />
-    <Folder Include="Views\FoodTag\" />
     <Folder Include="Views\Profile\" />
   </ItemGroup>
 
