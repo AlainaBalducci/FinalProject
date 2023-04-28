@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Views\Profile\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
 
   <ItemGroup>

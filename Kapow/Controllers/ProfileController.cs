@@ -41,7 +41,8 @@ namespace Kapow.Controllers
                     UserName = addProfileViewModel.UserName,
                     FirstName = addProfileViewModel.FirstName,
                     HomeBase = addProfileViewModel.HomeBase,
-                    ImageUrl = addProfileViewModel.ImageUrl
+                    ImageUrl = addProfileViewModel.ImageUrl,
+                    //Restaurants = new List<RestaurantDto>()
                 };
                 context.Profiles.Add(newProfile);
                 context.SaveChanges();

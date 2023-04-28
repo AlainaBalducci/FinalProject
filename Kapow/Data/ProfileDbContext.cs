@@ -19,6 +19,10 @@ namespace Kapow.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //modelBuilder.Entity<Profile>()
+            //    .HasMany(p => p.Restaurants);
+
+
             base.OnModelCreating(modelBuilder);
             SeedRoles(modelBuilder);
         }

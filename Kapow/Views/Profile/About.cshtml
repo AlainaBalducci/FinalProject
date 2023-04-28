@@ -6,8 +6,10 @@
         <p>Username: @Model.UserName</p>
         <p>First Name: @Model.FirstName</p>
         <p>Hometown: @Model.HomeBase</p>
+        <p>restaurant: @Model.Restaurants</p>
     </div>
     <div style="flex: 1;">
     <img src="@Model.ImageUrl" width="170" height="170"/>
     </div>
 </div>
+<a asp-controller="Restaurant" asp-action="AddProfile" asp-route-id = "@Model.Id">Add restaurant to list!</a>
