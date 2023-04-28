@@ -34,6 +34,10 @@ namespace Kapow.Migrations
                     b.Property<string>("ImageUrl")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("Restaurants")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("UserName")
                         .HasColumnType("longtext");
 
@@ -54,15 +58,10 @@ namespace Kapow.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("ProfileId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Url")
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProfileId");
 
                     b.ToTable("Restaurants");
                 });
@@ -95,14 +94,14 @@ namespace Kapow.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ec684468-e600-4556-8fd5-4bc5e0c8886e",
+                            Id = "5ef2ace5-4cd4-44b3-bb2d-e9a54beae0d1",
                             ConcurrencyStamp = "1",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
-                            Id = "64c6705c-0f5b-4856-9bd7-7d5f1cf8f566",
+                            Id = "1ebee776-1e2a-4bde-931f-6c75c77ab1d9",
                             ConcurrencyStamp = "2",
                             Name = "User",
                             NormalizedName = "User"
@@ -279,13 +278,6 @@ namespace Kapow.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Kapow.Models.RestaurantDto", b =>
-                {
-                    b.HasOne("Kapow.Models.Profile", null)
-                        .WithMany("Restaurants")
-                        .HasForeignKey("ProfileId");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -335,11 +327,6 @@ namespace Kapow.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Kapow.Models.Profile", b =>
-                {
-                    b.Navigation("Restaurants");
                 });
 #pragma warning restore 612, 618
         }

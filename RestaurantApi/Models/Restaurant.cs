@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Kapow.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace RestaurantApi.Models
 {
@@ -13,7 +14,8 @@ namespace RestaurantApi.Models
         public string? Location { get; set; }
         [Required]
         public FoodTag FoodTag { get; set; }
-
+        public ICollection<Profile>? Profiles { get; set; }
+        public Restaurant(){}
     }
     public enum FoodTag
     {
