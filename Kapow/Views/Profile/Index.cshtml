@@ -1,0 +1,36 @@
+﻿@model List<Kapow.Models.Profile>
+
+<h1>Choose Your Date, Mate</h1>
+@if (Model.Count == 0)
+{
+    <p>No profiles have been listed yet!</p>
+}
+else
+{
+    <table class="table">
+        <tr>
+            <th>Profile Picture</th>
+            <th>Username</th>
+        </tr>
+        @foreach (Profile profile in Model)
+        {
+            <tr>
+                <td><img src="@profile.ImageUrl" width="170" height="100"/></td>
+                @*<td>@profile.UserName</td>*@
+                <td><a asp-controller="Profile" asp-action="About" asp-route-id="@profile.Id">@profile.UserName</a></td>
+
+            </tr>
+        }
+    </table>
+}
+
+
+
+
+
+
+
+
+
+
+

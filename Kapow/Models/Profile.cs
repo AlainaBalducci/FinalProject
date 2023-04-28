@@ -7,20 +7,17 @@ namespace Kapow.Models
         public int Id { get; set; }
         public string? UserName { get; set; }
         public string? FirstName { get; set; }
-        //public string? Email { get; set; }
         public string? HomeBase { get; set; }
+        public string? ImageUrl { get; set; }
         public List<RestaurantDto>? Restaurants { get; set; }
-       // public ICollection<FoodTag>? FoodTags { get; set; }
 
-        public Profile(int id, string? userName, string? firstName, string? homeBase)
+        public Profile(string? userName, string? firstName, string? homeBase, string? imageUrl)
         {
-            Id = id;
             UserName = userName;
             FirstName = firstName;
-            //Email = email;
             HomeBase = homeBase;
+            ImageUrl = imageUrl;
             Restaurants = new List <RestaurantDto>();
-           // FoodTags = new List<FoodTag>();
         }
 
         public Profile() { }

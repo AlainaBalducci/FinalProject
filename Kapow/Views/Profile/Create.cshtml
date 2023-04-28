@@ -1,0 +1,41 @@
+﻿@model Kapow.ViewModels.AddProfileViewModel
+
+<h1>Create Your Profile</h1>
+<form asp-controller="Profile" asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="UserName"> Username</label>
+        <input asp-for="UserName" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="FirstName">First Name</label>
+        <input asp-for="FirstName" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="HomeBase">Hometown</label>
+        <input asp-for="HomeBase" />
+        <span asp-validation-for="HomeBase" class="text-danger"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="ImageUrl">Profile Picture</label>
+        <input asp-for="ImageUrl" />
+        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+    </div>
+    <br />
+    <input type="submit" value="Submit" />
+</form>
+
+
+
+
+
+
+
+
+
+
+

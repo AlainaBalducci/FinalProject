@@ -11,7 +11,7 @@ builder.Services.AddControllersWithViews();
 
 var connectionString = "server=localhost;user=kapow;password=kapow;database=kapow";
 
-var serverVersion = new MySqlServerVersion(new Version(8, 0, 32));
+var serverVersion = new MySqlServerVersion(new Version(8, 0, 31));
 
 builder.Services.AddDbContext<ProfileDbContext>(dbContextOptions => dbContextOptions.UseMySql(connectionString, serverVersion));
 

@@ -19,20 +19,6 @@ namespace Kapow.Migrations
                 .HasAnnotation("ProductVersion", "6.0.15")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("Kapow.Models.Location", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Locations");
-                });
-
             modelBuilder.Entity("Kapow.Models.Profile", b =>
                 {
                     b.Property<int>("Id")
@@ -43,6 +29,9 @@ namespace Kapow.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("HomeBase")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ImageUrl")
                         .HasColumnType("longtext");
 
                     b.Property<string>("UserName")
@@ -106,14 +95,14 @@ namespace Kapow.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "840f5bf4-1249-4044-8c90-ce30ccf636e9",
+                            Id = "ec684468-e600-4556-8fd5-4bc5e0c8886e",
                             ConcurrencyStamp = "1",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
-                            Id = "5c510c4d-5852-4bda-a68b-9868c057e5eb",
+                            Id = "64c6705c-0f5b-4856-9bd7-7d5f1cf8f566",
                             ConcurrencyStamp = "2",
                             Name = "User",
                             NormalizedName = "User"

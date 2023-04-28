@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 var connectionString = "server=localhost;user= restaurant_api;password=restaurant_api;database=restaurants_api";
-var serverVersion = new MySqlServerVersion(new Version(8, 0, 32));
+var serverVersion = new MySqlServerVersion(new Version(8, 0, 31));
 builder.Services.AddDbContext<RestaurantDbContext>(dbContextOptions => dbContextOptions.UseMySql(connectionString, serverVersion));
 
 var app = builder.Build();
