@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Kapow.Controllers
 {
-    [Authorize(Roles = "User")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "User, Admin")]
+    //[Authorize(Roles = "Admin")]
     public class ProfileController : Controller
     {
         

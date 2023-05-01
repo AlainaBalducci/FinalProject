@@ -10,8 +10,8 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Kapow.Controllers
 {
-    [Authorize(Roles = "User")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "User, Admin")]
+   //[Authorize(Roles = "Admin")]
     public class RestaurantController : Controller
     {
         //Baseurl will allow the controller to talk to the api through the local host.  i think
