@@ -9,7 +9,7 @@ namespace Kapow.Models
         public string? FirstName { get; set; }
         public string? HomeBase { get; set; }
         public string? ImageUrl { get; set; }
-        public string Restaurants { get; set; }
+        public string? Restaurants { get; set; }
 
 
         public Profile() { }
