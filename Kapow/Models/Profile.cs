@@ -9,16 +9,8 @@ namespace Kapow.Models
         public string? FirstName { get; set; }
         public string? HomeBase { get; set; }
         public string? ImageUrl { get; set; }
-        public List<RestaurantDto>? Restaurants { get; set; }
+        public string? Restaurants { get; set; }
 
-        public Profile(string? userName, string? firstName, string? homeBase, string? imageUrl)
-        {
-            UserName = userName;
-            FirstName = firstName;
-            HomeBase = homeBase;
-            ImageUrl = imageUrl;
-            Restaurants = new List <RestaurantDto>();
-        }
 
         public Profile() { }
 

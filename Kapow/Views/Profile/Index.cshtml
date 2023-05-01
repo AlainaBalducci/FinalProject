@@ -15,8 +15,8 @@ else
         @foreach (Profile profile in Model)
         {
             <tr>
-                <td>@profile.ImageUrl</td>
-                <td>@profile.UserName</td>
+                <td><img src="@profile.ImageUrl" width="170" height="100"/></td>
+                @*<td>@profile.UserName</td>*@
                 <td><a asp-controller="Profile" asp-action="About" asp-route-id="@profile.Id">@profile.UserName</a></td>
 
             </tr>
