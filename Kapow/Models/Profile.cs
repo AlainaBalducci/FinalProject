@@ -9,7 +9,9 @@ namespace Kapow.Models
         public string? FirstName { get; set; }
         public string? HomeBase { get; set; }
         public string? ImageUrl { get; set; }
-        public string? Restaurants { get; set; }
+        public string? Restaurant1 { get; set; }
+        public string? Restaurant2 { get; set; } 
+        public string? Restaurant3 { get; set; } 
 
 
         public Profile() { }
@@ -29,5 +31,15 @@ namespace Kapow.Models
         {
             return HashCode.Combine(Id);
         }
+
+        public List<string> MakeRestaurantList()
+        {
+            List<string> list = new List<string>();
+            list.Add(Restaurant1);
+            list.Add(Restaurant2);
+            list.Add(Restaurant3);
+            return list;
+        }
     }
+   
 }

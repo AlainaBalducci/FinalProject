@@ -16,9 +16,11 @@ else
         {
             <tr>
                 <td><img src="@profile.ImageUrl" width="170" height="100"/></td>
-                @*<td>@profile.UserName</td>*@
                 <td><a asp-controller="Profile" asp-action="About" asp-route-id="@profile.Id">@profile.UserName</a></td>
-
+                <td>
+                    <input type="checkbox" id="selectedProfile" name="selectedProfile" value="@profile.UserName">
+                    <label for="selectedProfile">choose to match!</label><br>
+                </td>
             </tr>
         }
     </table>

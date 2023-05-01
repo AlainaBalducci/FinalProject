@@ -1,0 +1,42 @@
+﻿@model List<Kapow.Models.Profile>
+<form action="Match" method="post">
+    <table class="table">
+        <tr>
+            <th>Profile Picture</th>
+            <th>Username</th>
+        </tr>
+        @foreach (Profile profile in Model)
+        {
+            <tr>
+                <td><img src="@profile.ImageUrl" width="170" height="100"/></td>
+                <td><a asp-controller="Profile" asp-action="About" asp-route-id="@profile.Id">@profile.UserName</a></td>
+                <td>
+                    <input type="radio" id="profile1" name="profileId1" value="@profile.Id">
+                    <label for="profile1">Match with them!</label><br>
+                </td>
+            </tr>
+        }
+    </table>
+    <br />
+    <br />
+    
+    <table class="table">
+        <tr>
+            <th>Profile Picture</th>
+            <th>Username</th>
+        </tr>
+        @foreach (Profile profile in Model)
+        {
+            <tr>
+                <td><img src="@profile.ImageUrl" width="170" height="100"/></td>
+                <td><a asp-controller="Profile" asp-action="About" asp-route-id="@profile.Id">@profile.UserName</a></td>
+                <td>
+                   <input type="radio" id="profile2" name="profileId2" value="@profile.Id">
+                    <label for="profile2">Match with them!</label><br>
+                </td>
+            </tr>
+        }
+    </table>
+    <br />
+    <input type="submit" value="Match Restaurant!" />
+    </form>
