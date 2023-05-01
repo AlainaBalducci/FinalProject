@@ -35,7 +35,6 @@ namespace Kapow.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("Restaurants")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("UserName")
@@ -94,14 +93,14 @@ namespace Kapow.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "5ef2ace5-4cd4-44b3-bb2d-e9a54beae0d1",
+                            Id = "674daf21-5f82-4024-84de-8f8a276a5cf7",
                             ConcurrencyStamp = "1",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
-                            Id = "1ebee776-1e2a-4bde-931f-6c75c77ab1d9",
+                            Id = "59ba59a5-d685-42c5-be27-e459312b3d07",
                             ConcurrencyStamp = "2",
                             Name = "User",
                             NormalizedName = "User"
