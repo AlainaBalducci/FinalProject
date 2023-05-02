@@ -1,16 +1,20 @@
 ﻿using Kapow.Data;
 using Kapow.Models;
 using Kapow.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using Newtonsoft.Json;
 using NuGet.Protocol;
 using System;
+using System.Data;
 using System.Linq;
 using System.Net.Http.Headers;
 
 namespace Kapow.Controllers
 {
+    [Authorize(Roles = "User, Admin")]
+
     public class ProfileController : Controller
     {
         string Baseurl = "https://localhost:7157";
