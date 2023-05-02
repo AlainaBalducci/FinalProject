@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kapow.Migrations
 {
     [DbContext(typeof(ProfileDbContext))]
-    [Migration("20230501172713_anotherMigration1")]
-    partial class anotherMigration1
+    [Migration("20230502153004_matchFeatureMigraions")]
+    partial class matchFeatureMigraions
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,7 +36,13 @@ namespace Kapow.Migrations
                     b.Property<string>("ImageUrl")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Restaurants")
+                    b.Property<string>("Restaurant1")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Restaurant2")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Restaurant3")
                         .HasColumnType("longtext");
 
                     b.Property<string>("UserName")
@@ -95,14 +101,14 @@ namespace Kapow.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "674daf21-5f82-4024-84de-8f8a276a5cf7",
+                            Id = "35892bc1-0b4b-4e61-8dba-e970b331cb76",
                             ConcurrencyStamp = "1",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
-                            Id = "59ba59a5-d685-42c5-be27-e459312b3d07",
+                            Id = "504c4b41-716c-4d7f-a423-1ce19ae9553d",
                             ConcurrencyStamp = "2",
                             Name = "User",
                             NormalizedName = "User"
