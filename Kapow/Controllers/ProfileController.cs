@@ -133,24 +133,41 @@ namespace Kapow.Controllers
             return View("Create", addProfileViewModel);
         }
 
-        
+
+
+        //Delete Profiles
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete()
         {
-            return View();
+            List<Profile> profiles = context.Profiles.ToList();
 
+            //ViewBag.profiles = context.Profiles.ToList();
+
+            return View(profiles);
         }
 
-        
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Delete(int[] profileIds)
+        {
+            foreach (int profileId in profileIds)
+            {
+                Profile theProfile = context.Profiles.Find(profileId);
+                context.Profiles.Remove(theProfile);
+            }
+
+            context.SaveChanges();
+
+            return Redirect("/profile");
+        }
+
+
+
         public IActionResult Edit()
         {
             return View();
         }
 
-        //Add restaurants to profile
-        public IActionResult AddRest()
-        {
-            return View();
-        }
 
         //Show details of an individual profile
         public IActionResult About(int id)
