@@ -1,6 +1,6 @@
 ﻿@model List<Kapow.Models.Profile>
 
-<h1>Choose Your Date, Mate</h1>
+<h1>Choose Your Date, Mate</h1><br/>
 @if (Model.Count == 0)
 {
     <p>No profiles have been listed yet!</p>
@@ -22,12 +22,13 @@ else
             </tr>
         }
     </table>
+    <br/>
 }
 
 @if (User.IsInRole("Admin"))
 {
     <p><a asp-controller="Profile" asp-action="Delete">Delete Profile</a></p>
-    <input type="text" name="admin-only-input" value="Admins Only" />
+    @*<input type="text" name="admin-only-input" value="Admins Only" />*@
 }
 
 

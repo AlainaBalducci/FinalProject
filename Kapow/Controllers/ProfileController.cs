@@ -58,9 +58,11 @@ namespace Kapow.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult Delete()
         {
-            ViewBag.profiles = context.Profiles.ToList();
+            List<Profile> profiles = context.Profiles.ToList();
 
-            return View();
+            //ViewBag.profiles = context.Profiles.ToList();
+
+            return View(profiles);
         }
 
         [HttpPost]
