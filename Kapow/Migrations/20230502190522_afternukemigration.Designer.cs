@@ -3,6 +3,7 @@ using System;
 using Kapow.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kapow.Migrations
 {
     [DbContext(typeof(ProfileDbContext))]
-    partial class ProfileDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230502190522_afternukemigration")]
+    partial class afternukemigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -99,14 +101,14 @@ namespace Kapow.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f3b9c050-9add-4b46-98eb-fb152b4ebc46",
+                            Id = "3d014549-7470-4ec4-80a1-f50d1111343f",
                             ConcurrencyStamp = "1",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
-                            Id = "a1f9dd26-a01e-4393-bd6a-2132580bd4d1",
+                            Id = "9adf09a8-65e4-4064-b576-9da1ba0d8128",
                             ConcurrencyStamp = "2",
                             Name = "User",
                             NormalizedName = "User"
