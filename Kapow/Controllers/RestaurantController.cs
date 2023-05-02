@@ -3,13 +3,15 @@ using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using Kapow.Models;
 using Kapow.Data;
-
 using Microsoft.EntityFrameworkCore;
 using Kapow.ViewModels;
-
+using System.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Kapow.Controllers
 {
+    [Authorize(Roles = "User, Admin")]
+   //[Authorize(Roles = "Admin")]
     public class RestaurantController : Controller
     {
         //Baseurl will allow the controller to talk to the api through the local host.  i think

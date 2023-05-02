@@ -1,13 +1,16 @@
 ﻿using Kapow.Data;
 using Kapow.Models;
 using Kapow.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Kapow.Controllers
 {
+    [Authorize(Roles = "User, Admin")]
+    //[Authorize(Roles = "Admin")]
     public class ProfileController : Controller
     {
-
+        
         private ProfileDbContext context;
 
         public ProfileController(ProfileDbContext dbContext)
@@ -51,14 +54,14 @@ namespace Kapow.Controllers
             return View("Create", addProfileViewModel);
         }
 
-        //Delete Restaurants
+        
         public IActionResult Delete()
         {
             return View();
 
         }
 
-        //Edit Profile- change location, tags
+        
         public IActionResult Edit()
         {
             return View();

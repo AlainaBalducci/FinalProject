@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kapow.Migrations
 {
     [DbContext(typeof(ProfileDbContext))]
-    [Migration("20230428185039_migration1")]
-    partial class migration1
+    [Migration("20230501172713_anotherMigration1")]
+    partial class anotherMigration1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,6 +36,9 @@ namespace Kapow.Migrations
                     b.Property<string>("ImageUrl")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("Restaurants")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("UserName")
                         .HasColumnType("longtext");
 
@@ -56,15 +59,10 @@ namespace Kapow.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("ProfileId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Url")
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProfileId");
 
                     b.ToTable("Restaurants");
                 });
@@ -97,14 +95,14 @@ namespace Kapow.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "d47308ec-49fe-4e70-8d0c-bd74b02c7f4a",
+                            Id = "674daf21-5f82-4024-84de-8f8a276a5cf7",
                             ConcurrencyStamp = "1",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
-                            Id = "5551e6e3-110c-4bbb-bc82-2e22dd1430ee",
+                            Id = "59ba59a5-d685-42c5-be27-e459312b3d07",
                             ConcurrencyStamp = "2",
                             Name = "User",
                             NormalizedName = "User"
@@ -281,13 +279,6 @@ namespace Kapow.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Kapow.Models.RestaurantDto", b =>
-                {
-                    b.HasOne("Kapow.Models.Profile", null)
-                        .WithMany("Restaurants")
-                        .HasForeignKey("ProfileId");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -337,11 +328,6 @@ namespace Kapow.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Kapow.Models.Profile", b =>
-                {
-                    b.Navigation("Restaurants");
                 });
 #pragma warning restore 612, 618
         }
