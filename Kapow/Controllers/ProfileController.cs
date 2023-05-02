@@ -1,10 +1,13 @@
-﻿using Kapow.Data;
+﻿using System.Data;
+using Kapow.Data;
 using Kapow.Models;
 using Kapow.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Kapow.Controllers
 {
+    [Authorize(Roles = "User, Admin")]
     public class ProfileController : Controller
     {
 
@@ -52,6 +55,7 @@ namespace Kapow.Controllers
         }
 
         //Delete Restaurants
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete()
         {
             ViewBag.profiles = context.Profiles.ToList();
@@ -60,6 +64,7 @@ namespace Kapow.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int[] profileIds)
         {
             foreach (int profileId in profileIds)

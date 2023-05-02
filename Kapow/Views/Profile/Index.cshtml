@@ -24,7 +24,18 @@ else
     </table>
 }
 
-<p><a asp-controller="Profile" asp-action="Delete">Delete Profile</a></p>
+@if (User.IsInRole("Admin"))
+{
+    <p><a asp-controller="Profile" asp-action="Delete">Delete Profile</a></p>
+    <input type="text" name="admin-only-input" value="Admins Only" />
+}
+
+
+
+
+
+
+
 
 
 
