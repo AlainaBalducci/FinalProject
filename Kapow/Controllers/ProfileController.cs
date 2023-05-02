@@ -54,9 +54,28 @@ namespace Kapow.Controllers
         //Delete Restaurants
         public IActionResult Delete()
         {
-            return View();
+            ViewBag.profiles = context.Profiles.ToList();
 
+            return View();
         }
+
+        [HttpPost]
+        public IActionResult Delete(int[] profileIds)
+        {
+            foreach (int profileId in profileIds)
+            {
+                Profile theProfile = context.Profiles.Find(profileId);
+                context.Profiles.Remove(theProfile);
+            }
+
+            context.SaveChanges();
+
+            return Redirect("/profile");
+        }
+
+
+
+
 
         //Edit Profile- change location, tags
         public IActionResult Edit()
@@ -64,11 +83,9 @@ namespace Kapow.Controllers
             return View();
         }
 
-        //Add restaurants to profile
-        public IActionResult AddRest()
-        {
-            return View();
-        }
+
+
+
 
         //Show details of an individual profile
         public IActionResult About(int id)
