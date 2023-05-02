@@ -178,6 +178,8 @@ namespace Kapow.Controllers
             {
                 int profileId = addRestaurantViewModel.ProfileId;
                 int restaurantId = addRestaurantViewModel.RestaurantId;
+                int restaurantId2 = addRestaurantViewModel.RestaurantId2;
+                int restaurantId3 = addRestaurantViewModel.RestaurantId3;
 
 
                 Profile theProfile = context.Profiles.Find(profileId);
@@ -186,9 +188,27 @@ namespace Kapow.Controllers
                 {
                     if (restaurant.Id == restaurantId)
                     {
-                        theProfile.Restaurants = restaurant.Name;
+                        theProfile.Restaurant1 = restaurant.Name;
                     }
                 }
+
+                foreach (var restaurant in allRestaurants)
+                {
+                    if (restaurant.Id == restaurantId2)
+                    {
+                        theProfile.Restaurant2 = restaurant.Name;
+                    }
+                }
+
+                foreach (var restaurant in allRestaurants)
+                {
+                    if (restaurant.Id == restaurantId3)
+                    {
+                        theProfile.Restaurant3 = restaurant.Name;
+                    }
+                }
+
+
                 //RestaurantDto theRestaurant = allRestaurants.Find(restaurantId);
                 //theProfile.Restaurants.Add(theRestaurant);
                 context.SaveChanges();

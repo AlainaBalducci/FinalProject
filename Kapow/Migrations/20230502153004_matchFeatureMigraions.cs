@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Kapow.Migrations
 {
-    public partial class anotherMigration : Migration
+    public partial class matchFeatureMigraions : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -81,7 +81,11 @@ namespace Kapow.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ImageUrl = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Restaurants = table.Column<string>(type: "longtext", nullable: true)
+                    Restaurant1 = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Restaurant2 = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Restaurant3 = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -239,12 +243,12 @@ namespace Kapow.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "3fdcdaa1-567e-4a17-8b40-14d0b0d693b1", "1", "Admin", "Admin" });
+                values: new object[] { "35892bc1-0b4b-4e61-8dba-e970b331cb76", "1", "Admin", "Admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "db188ead-2340-4399-95c9-e639f8274993", "2", "User", "User" });
+                values: new object[] { "504c4b41-716c-4d7f-a423-1ce19ae9553d", "2", "User", "User" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

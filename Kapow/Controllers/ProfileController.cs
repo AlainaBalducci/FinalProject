@@ -3,6 +3,12 @@ using Kapow.Models;
 using Kapow.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.VisualBasic.Syntax;
+using Newtonsoft.Json;
+using NuGet.Protocol;
+using System;
+using System.Linq;
+using System.Net.Http.Headers;
 
 namespace Kapow.Controllers
 {
@@ -12,7 +18,7 @@ namespace Kapow.Controllers
     {
         
         private ProfileDbContext context;
-
+        string Baseurl = "https://localhost:7157";
         public ProfileController(ProfileDbContext dbContext)
         {
             context = dbContext;
@@ -25,14 +31,85 @@ namespace Kapow.Controllers
             List<Profile> profiles = context.Profiles.ToList();
             return View(profiles);
         }
-
-        //Add/create Profile
-        public IActionResult Create()
+        [HttpGet]
+        public IActionResult Match()
         {
-            AddProfileViewModel addProfileViewModel = new AddProfileViewModel();
-            return View(addProfileViewModel);
-
+            List<Profile> profiles = context.Profiles.ToList();
+            return View(profiles);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Match(string profileId1, string profileId2)
+        {
+            List<RestaurantDto> allRestaurants = new List<RestaurantDto>();
+            RestaurantDto restaurant = null;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Baseurl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage response = await client.GetAsync("/api/restaurant");
+                if (response.IsSuccessStatusCode)
+                {
+                    var RestaurantResponse = response.Content.ReadAsStringAsync().Result;
+                    allRestaurants = JsonConvert.DeserializeObject<List<RestaurantDto>>(RestaurantResponse);
+                }
+            }
+            int id1 = Int32.Parse(profileId1);
+            int id2 = Int32.Parse(profileId2);
+
+            Profile selectedProfile1 = context.Profiles.Find(id1);
+            Profile selectedProfile2 = context.Profiles.Find(id2);
+
+            List<string> selectedProfile1List = selectedProfile1.MakeRestaurantList();
+            List<string> selectedProfile2List = selectedProfile2.MakeRestaurantList();
+
+            foreach (string x in selectedProfile1List)
+            {
+                if (selectedProfile2List.Contains(x))
+                {
+                    foreach (var r in allRestaurants)
+                    {
+                        if (r.Name == x)
+                        {
+                            restaurant = r;
+                            return View("MatchResult", restaurant);
+                        }
+                    }
+                }
+            }
+
+            var random = new Random();
+            int index = random.Next(0, selectedProfile1List.Count);
+            foreach (var r in allRestaurants)
+            {
+                if (r.Name == selectedProfile1List[index])
+                {
+                    restaurant = r;
+
+                }
+            }
+
+            return View("MatchResult", restaurant);
+        }
+
+
+
+
+
+        public IActionResult MatchResult()
+        {
+            return View();
+        }
+            //Add/create Profile
+            public IActionResult Create()
+            {
+                AddProfileViewModel addProfileViewModel = new AddProfileViewModel();
+                return View(addProfileViewModel);
+
+            }
+        
 
         [HttpPost]
         public IActionResult Create(AddProfileViewModel addProfileViewModel)
@@ -45,7 +122,9 @@ namespace Kapow.Controllers
                     FirstName = addProfileViewModel.FirstName,
                     HomeBase = addProfileViewModel.HomeBase,
                     ImageUrl = addProfileViewModel.ImageUrl,
-                    Restaurants = ""
+                    Restaurant1 = "",
+                    Restaurant2 = "",
+                    Restaurant3 = ""
                 };
                 context.Profiles.Add(newProfile);
                 context.SaveChanges();
