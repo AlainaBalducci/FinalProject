@@ -10706,11 +10706,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Student\\Desktop\\FinalProject\\RestaurantApi\\RestaurantApi.csproj",
+      "projectUniqueName": "C:\\Users\\Student\\Desktop\\FinalProject2\\RestaurantApi\\RestaurantApi.csproj",
       "projectName": "RestaurantApi",
-      "projectPath": "C:\\Users\\Student\\Desktop\\FinalProject\\RestaurantApi\\RestaurantApi.csproj",
+      "projectPath": "C:\\Users\\Student\\Desktop\\FinalProject2\\RestaurantApi\\RestaurantApi.csproj",
       "packagesPath": "C:\\Users\\Student\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Student\\Desktop\\FinalProject\\RestaurantApi\\obj\\",
+      "outputPath": "C:\\Users\\Student\\Desktop\\FinalProject2\\RestaurantApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -10732,8 +10732,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Student\\Desktop\\FinalProject\\Kapow\\Kapow.csproj": {
-              "projectPath": "C:\\Users\\Student\\Desktop\\FinalProject\\Kapow\\Kapow.csproj"
+            "C:\\Users\\Student\\Desktop\\FinalProject2\\Kapow\\Kapow.csproj": {
+              "projectPath": "C:\\Users\\Student\\Desktop\\FinalProject2\\Kapow\\Kapow.csproj"
             }
           }
         }
