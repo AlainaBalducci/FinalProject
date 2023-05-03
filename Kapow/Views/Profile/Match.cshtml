@@ -1,4 +1,8 @@
-﻿@model List<Kapow.Models.Profile>
+﻿@using Kapow.Models;
+@model List<Kapow.Models.Profile>
+@{
+    bool isFirstOption = true;
+}
 <form action="Match" method="post">
     <table class="table">
         <tr>
@@ -8,18 +12,27 @@
         @foreach (Profile profile in Model)
         {
             <tr>
-                <td><img src="@profile.ImageUrl" width="170" height="100"/></td>
+                <td><img src="@profile.ImageUrl" width="170" height="100" /></td>
                 <td><a asp-controller="Profile" asp-action="About" asp-route-id="@profile.Id">@profile.UserName</a></td>
                 <td>
-                    <input type="radio" id="profile1" name="profileId1" value="@profile.Id">
-                    <label for="profile1">Match with them!</label><br>
+                    <label>
+                        <input type="radio" name="profileId1" value="@profile.Id" @(isFirstOption ? "checked" : "")>
+                        Match with them!
+                    </label>
+                    @if (isFirstOption)
+                    {
+                        isFirstOption = false;
+                    }
+                    <br>
                 </td>
             </tr>
         }
     </table>
     <br />
     <br />
-
+    @{
+        bool isFirstOption1 = true;
+    }
     <table class="table">
         <tr>
             <th>Profile Picture</th>
@@ -28,11 +41,16 @@
         @foreach (Profile profile in Model)
         {
             <tr>
-                <td><img src="@profile.ImageUrl" width="170" height="100"/></td>
+                <td><img src="@profile.ImageUrl" width="170" height="100" /></td>
                 <td><a asp-controller="Profile" asp-action="About" asp-route-id="@profile.Id">@profile.UserName</a></td>
                 <td>
-                   <input type="radio" id="profile2" name="profileId2" value="@profile.Id">
-                    <label for="profile2">Match with them!</label><br>
+                    <input type="radio" name="profileId2" value="@profile.Id" @(isFirstOption1 ? "checked" : "")>
+                    <label for="profile_@profile.Id">Match with them!</label>
+                    @if (isFirstOption1)
+                    {
+                        isFirstOption1 = false;
+                    }
+                    <br>
                 </td>
             </tr>
         }
