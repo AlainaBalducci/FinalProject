@@ -6,16 +6,47 @@
 }
 <head>
     <style>
-        body{
+        body {
             /*background-color:plum;*/
-           
+            background-image: url('https://img.freepik.com/premium-vector/abstract-smooth-blur-purple-gradient-background-website-banner-paper-card-decorative-design_120819-485.jpg?w=1060');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .title {
+            text-align:center;
+            font-family: cursive;
+            color: #dcdfe7cf;
+            font-weight: 400;
+        }
+
+        .couple-image {
             background-image: url('https://thumbs.dreamstime.com/b/cute-couple-smartphone-online-dating-concept-white-background-illustration-178317605.jpg');
             background-repeat: no-repeat;
-            background-position:right 3em bottom 0em;
-            
+            height: 640px;
+            width: 800px;
+            border-radius: 50px;
+            margin-top: 1.5rem;
         }
-        .title{
-            text-align:center;
+        .row {
+            justify-content: space-between;
+        }
+        .form-floating {
+            margin-bottom: 12px;
+        }
+        a {
+            text-decoration: none;
+            color: #e6a5b9cf;
+        }
+        a:hover {
+            text-decoration: none;
+            color: #dcdfe7cf;
+            font-weight: 800;
+           
+        }
+
+        .submit-button {
+            border-radius: 0.5rem;
+            margin-bottom: 12px;
         }
     </style>
 </head>
@@ -48,7 +79,7 @@
                     </div>
                 </div>
                 <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary submit-button">Log in</button>
                 </div>
                 <div>
                     <p>
@@ -64,7 +95,7 @@
             </form>
         </section>
     </div>
-    <div class="col-md-6 col-md-offset-2">
+    <div class="col-md-6 col-md-offset-2 couple-image">
         
     </div>
 </div>
