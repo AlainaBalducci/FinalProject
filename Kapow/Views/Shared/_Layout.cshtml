@@ -17,12 +17,19 @@
             font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             color:blueviolet;
         }
-        
+
+        .sticky {
+            position: sticky;
+            top: 0;
+            background-color: #ffffff;
+            background-color: rgba(218, 69, 188, 0.3);
+            padding-top: 1px;
+        }
     </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 sticky">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Profile" asp-action="Index"><em class="logo">RR</em></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
