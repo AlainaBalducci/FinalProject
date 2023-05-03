@@ -1,0 +1,35 @@
+﻿@model List<Kapow.Models.Profile>
+
+<h1>Delete Profile</h1>
+
+<form method="post">
+
+    @if (Model.Count == 0)
+    {
+        <p>No profiles have been created</p>
+    }
+    else
+    {
+        <table class="table">
+            <tr>
+                <th>Profile Picture</th>
+                <th>Username</th>
+                <br />
+            </tr>
+
+            @foreach (Profile profile in Model)
+            {
+                <tr>
+                    <td><input type="checkbox" name="profileIds" value="@profile.Id" />  &nbsp;  <img src="@profile.ImageUrl" width="170" height="100" /></td>
+                    <td>@profile.UserName</td>
+                </tr>
+
+            }
+        </table>
+    }
+    <br />
+    <input type="submit" value="Delete Selected Profiles" class="btn btn-danger">
+    <p><a asp-controller="Profile" asp-action="Index">Return</a></p>
+
+</form>
+

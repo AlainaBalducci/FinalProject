@@ -1,0 +1,31 @@
+﻿@page
+@model LogoutModel
+@{
+    ViewData["Title"] = "Log out";
+}
+<head>
+    <style>
+        body {
+            /*background-color:plum;*/
+
+            background-image: url('https://thumbs.dreamstime.com/b/cute-couple-smartphone-online-dating-concept-white-background-illustration-178317605.jpg');
+            background-repeat: no-repeat;
+            background-position: right;
+        }
+    </style>
+</head>
+<header>
+    <h1>@ViewData["Title"]</h1>
+    @{
+        if (User.Identity?.IsAuthenticated ?? false)
+        {
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="nav-link btn btn-link text-dark">Click here to Logout</button>
+            </form>
+        }
+        else
+        {
+            <p>You have successfully logged out of the application.</p>
+        }
+    }
+</header>
