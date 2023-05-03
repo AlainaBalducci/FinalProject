@@ -1,86 +1,123 @@
-﻿
-
-@model List<Kapow.Models.RestaurantDto>
+﻿@model List<Kapow.Models.RestaurantDto>
 
 
 <form action="Search" method="Post">
-    <h3>Search Type</h3>
+    <h3>Search for Restaurant by:</h3>
+    <br/>
     <span>
         <label>
-        <input type="radio"  name="searchType" value = "Name"> 
-        Name
+            <input type="radio" name="searchType" value="Name">
+            <b>Name&ensp;</b>
         </label>
+        <label for="keyword"></label>
+        <input type="text" name="keyword" id="searchTerm" />
+        <br />
         <label>
-        <input type="radio"  name="searchType" value = "Location"> 
-        Location
+            <input type="radio" name="searchType" value="Location">
+            <b>Location&ensp;</b>
         </label>
+        <b></b>
+        <select name="selectTerm">
+            <option value="Central West End"> Central West End</option>
+            <option value="South Grand"> South Grand</option>
+            <option value="Downtown St. Louis"> Downtown St. Louis</option>
+            <option value="St. Charles"> St. Charles</option>
+            <option value="Tower Grove"> Tower Grove</option>
+        </select>
+        <br />
         <label>
-        <input type="radio"  name="searchType" value = "Food Type"> 
-        Food Type
+            <input type="radio" name="searchType" value="Food Type">
+            <b>Food Type&ensp;</b>
         </label>
+        <b></b>
+        <select name="foodType" id="cars">
+            <option value="0"> Mexican</option>
+            <option value="1"> Mediterranean</option>
+            <option value="2"> Thai</option>
+            <option value="3"> Vegan</option>
+            <option value="4"> Persian</option>
+            <option value="5"> Pizza</option>
+            <option value="6"> Vietnamese</option>
+            <option value="7"> American</option>
+            <option value="8"> Steak</option>
+            <option value="9"> Seafood</option>
+            <option value="10"> Barbecue</option>
+            <option value="11"> Greek</option>
+            <option value="12"> Breakfast</option>
+            <option value="13"> Brazillian</option>
+        </select>
+        <br />
     </span>
-        <p>
-
-    <label for="keyword">Keyword:</label>
-    <input type="text" name="keyword" id="searchTerm" />
-    <b></b>
-
-    <select name="selectTerm">
-        <option value = "Central West End"> Central West End</option>
-        <option value = "South Grand"> South Grand</option>
-        <option value = "Downtown St. Louis"> Downtown St. Louis</option>
-        <option value = "St. Charles"> St. Charles</option>
-        <option value = "Tower Grove"> Tower Grove</option>
-    </select>
-
-    <select name="foodType" id="cars">
-        <option value ="0"> Mexican</option>
-        <option value ="1"> Mediterranean</option>
-        <option value ="2"> Thai</option>
-        <option value ="3"> Vegan</option>
-        <option value ="4"> Persian</option>
-        <option value ="5"> Pizza</option>
-        <option value ="6"> Vietnamese</option>
-        <option value ="7"> American</option>
-        <option value ="8"> Steak</option>
-        <option value ="9"> Seafood</option>
-        <option value ="10"> Barbecue</option>
-        <option value ="11"> Greek</option>
-        <option value ="12"> Breakfast</option>
-        <option value ="13"> Brazillian</option>
-    </select>
-        </p>
+    <br/>
     <input type="submit" value="Search" class="btn btn-success"/>
+    @*<br/>
+    <br/>*@
+</form>
+
+<form method="post">
+    @if (Model.Count > 0)
+    {
+        <table class="table">
+            <tr>
+                <th>Select</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Food Type</th>
+                <th>Website</th>
+                <br />
+            </tr>
+
+            @foreach (var restaurant in Model)
+            {
+                <tr>
+                    <td><input type="checkbox" name="restaurantIds" value="@restaurant.Id" />  &nbsp; </td>
+                    <td>@restaurant.Name  &nbsp; </td>
+                    <td>@restaurant.Location  &nbsp; </td>
+                    <td>@restaurant.FoodTag  &nbsp; </td>
+                    <td><a href="@restaurant.Url" target="_blank">@restaurant.Url</a></td>
+                    <br />
+                </tr>
+
+            }
+        </table>
+
+        @*<table class="job-listing">
+            <td><input type="checkbox" name="restaurantIds" value="restaurant" />  &nbsp; </td>
+            <tr>
+                <th>Name</th>
+                <td>@restaurant.Name</td>
+            </tr>
+            <tr>
+                <th>Location</th>
+                <td>@restaurant.Location</td>
+            </tr>
+            <tr>
+                <th>Food Type</th>
+                <td>@restaurant.FoodTag</td>
+            </tr>
+            <tr>
+                <th>Website</th>
+                <td><a href="@restaurant.Url" target="_blank">@restaurant.Url</a></td>
+                <br />
+                <br/>
+            </tr>
+        </table>*@
+
+        
+    }
+    else
+    {
+        <br />
+        <br />
+        <p>No matching results</p>
+    }
+
+
 </form>
 
 
 
+    @*<br />
+    <input type="submit" value="Delete Selected Profiles" class="btn btn-danger">
+    <p><a asp-controller="Profile" asp-action="Index">Return</a></p>*@
 
-
-@if(Model.Count > 0){
-    @foreach(var restaurant in Model)
-        {
-            <table class="job-listing">
-                <tr>
-                    <th> Restaurant Name </th>
-                    <td>@restaurant.Name</td>
-                </tr>
-                <tr>
-                    <th> Restaurant Location </th>
-                    <td>@restaurant.Location</td>
-                </tr>
-                <tr>
-                    <th> Restaurant Foodtag </th>
-                    <td>@restaurant.FoodTag</td>
-                </tr>
-                <tr>
-                    <th> Restaurant Website </th>
-                    <td>@restaurant.Url</td>
-                </tr>
-            </table>
-        }
-}else{
-    <br/>
-    <br/>
-    <p>No matching results.</p>
-}

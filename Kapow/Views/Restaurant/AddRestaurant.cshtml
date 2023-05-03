@@ -1,7 +1,7 @@
 ﻿@using Kapow.ViewModels
 @model AddRestaurantViewModel
 
-<h1>Add Restaurant to your Profile!: @Model.Profile.UserName </h1>
+<h1>Add Restaurant to Your Profile: @Model.Profile.UserName </h1>
 
 
 <form asp-controller="Restaurant" asp-action="AddProfile" method="post">
@@ -26,5 +26,5 @@
         <span asp-validation-for="RestaurantId3"></span>
     </div>
     <br />
-    <input type="submit" value="Add restaurant @Model.Profile.UserName" />
+    <input type="submit" value="Add Restaurant" />
 </form>
