@@ -128,7 +128,7 @@ namespace Kapow.Controllers
         }
 
 
-        public async Task<IActionResult> AddProfile(int id)
+        public async Task<IActionResult> AddRestaurant(int id)
         {
             Profile theProfile = context.Profiles.Find(id);
             List<RestaurantDto> possibleRestaurants = new List<RestaurantDto>();
@@ -155,7 +155,7 @@ namespace Kapow.Controllers
 
         
         [HttpPost]
-        public async Task<IActionResult> AddProfile(AddRestaurantViewModel addRestaurantViewModel)
+        public async Task<IActionResult> AddRestaurant(AddRestaurantViewModel addRestaurantViewModel)
         {
             List<RestaurantDto> allRestaurants = new List<RestaurantDto>();
 
@@ -180,6 +180,9 @@ namespace Kapow.Controllers
                 int restaurantId = addRestaurantViewModel.RestaurantId;
                 int restaurantId2 = addRestaurantViewModel.RestaurantId2;
                 int restaurantId3 = addRestaurantViewModel.RestaurantId3;
+                int restaurantId4 = addRestaurantViewModel.RestaurantId4;
+                int restaurantId5 = addRestaurantViewModel.RestaurantId5;
+
 
 
                 Profile theProfile = context.Profiles.Find(profileId);
@@ -207,6 +210,20 @@ namespace Kapow.Controllers
                         theProfile.Restaurant3 = restaurant.Name;
                     }
                 }
+                foreach (var restaurant in allRestaurants)
+                {
+                    if (restaurant.Id == restaurantId4)
+                    {
+                        theProfile.Restaurant4 = restaurant.Name;
+                    }
+                }
+                foreach (var restaurant in allRestaurants)
+                {
+                    if (restaurant.Id == restaurantId5)
+                    {
+                        theProfile.Restaurant5 = restaurant.Name;
+                    }
+                }
 
 
                 //RestaurantDto theRestaurant = allRestaurants.Find(restaurantId);
@@ -214,14 +231,10 @@ namespace Kapow.Controllers
                 context.SaveChanges();
                 return Redirect("/Profile/About/" + profileId);
             }
-
-
-
-
-
-
             return View();
         }
+
+
 
 
 
@@ -241,13 +254,6 @@ namespace Kapow.Controllers
         //    }
         //    return View(addSkillViewModel);
         //}
-
-
-
-
-
-
-
 
 
 

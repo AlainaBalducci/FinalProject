@@ -11,6 +11,8 @@ namespace Kapow.ViewModels
         public int RestaurantId { get; set; }
         public int RestaurantId2 { get; set; }
         public int RestaurantId3 { get; set; }
+        public int RestaurantId4 { get; set; }
+        public int RestaurantId5 { get; set; }
         public AddRestaurantViewModel(Profile theProfile, List<RestaurantDto> possibleRestaurants) { 
             Restaurants = new List<SelectListItem>();
             foreach(var restaurant in possibleRestaurants)

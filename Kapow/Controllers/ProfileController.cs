@@ -24,6 +24,7 @@ namespace Kapow.Controllers
             context = dbContext;
         }
 
+
         //List All Users
         public IActionResult Index()
         {
@@ -31,12 +32,17 @@ namespace Kapow.Controllers
             List<Profile> profiles = context.Profiles.ToList();
             return View(profiles);
         }
+
+
+
         [HttpGet]
         public IActionResult Match()
         {
             List<Profile> profiles = context.Profiles.ToList();
             return View(profiles);
         }
+
+
 
         [HttpPost]
         public async Task<IActionResult> Match(string profileId1, string profileId2)
@@ -102,14 +108,20 @@ namespace Kapow.Controllers
         {
             return View();
         }
-            //Add/create Profile
-            public IActionResult Create()
-            {
-                AddProfileViewModel addProfileViewModel = new AddProfileViewModel();
-                return View(addProfileViewModel);
 
-            }
+
+
+
+        //Add/create Profile
+        public IActionResult Create()
+        {
+            AddProfileViewModel addProfileViewModel = new AddProfileViewModel();
+            return View(addProfileViewModel);
+
+        }
         
+
+
 
         [HttpPost]
         public IActionResult Create(AddProfileViewModel addProfileViewModel)
@@ -124,7 +136,9 @@ namespace Kapow.Controllers
                     ImageUrl = addProfileViewModel.ImageUrl,
                     Restaurant1 = "",
                     Restaurant2 = "",
-                    Restaurant3 = ""
+                    Restaurant3 = "",
+                    Restaurant4 = "",
+                    Restaurant5 = ""
                 };
                 context.Profiles.Add(newProfile);
                 context.SaveChanges();
@@ -132,6 +146,8 @@ namespace Kapow.Controllers
             }
             return View("Create", addProfileViewModel);
         }
+
+
 
 
 
@@ -145,6 +161,7 @@ namespace Kapow.Controllers
 
             return View(profiles);
         }
+
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
@@ -163,10 +180,14 @@ namespace Kapow.Controllers
 
 
 
+
+
         public IActionResult Edit()
         {
             return View();
         }
+
+
 
 
         //Show details of an individual profile
@@ -175,7 +196,5 @@ namespace Kapow.Controllers
             Profile selectedProfile = context.Profiles.Find(id);
             return View(selectedProfile);
         }
-
-       
     }
 }

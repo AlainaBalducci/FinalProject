@@ -3,7 +3,7 @@
 
 <form action="Search" method="Post">
     <h3>Search for Restaurant by:</h3>
-    <br/>
+    <br />
     <span>
         <label>
             <input type="radio" name="searchType" value="Name">
@@ -11,7 +11,7 @@
         </label>
         <label for="keyword"></label>
         <input type="text" name="keyword" id="searchTerm" />
-        <br />
+        <br /><br />
         <label>
             <input type="radio" name="searchType" value="Location">
             <b>Location&ensp;</b>
@@ -24,7 +24,7 @@
             <option value="St. Charles"> St. Charles</option>
             <option value="Tower Grove"> Tower Grove</option>
         </select>
-        <br />
+        <br /><br />
         <label>
             <input type="radio" name="searchType" value="Food Type">
             <b>Food Type&ensp;</b>
@@ -48,12 +48,10 @@
         </select>
         <br />
     </span>
-    <br/>
-    <input type="submit" value="Search" class="btn btn-success"/>
-    @*<br/>
-    <br/>*@
+    <br />
+    <input type="submit" value="Search" class="btn btn-success" />
+    <p><a asp-controller="Restaurant" asp-action="Search">All Restaurants</a></p>
 </form>
-
 <form method="post">
     @if (Model.Count > 0)
     {
@@ -82,28 +80,28 @@
         </table>
 
         @*<table class="job-listing">
-            <td><input type="checkbox" name="restaurantIds" value="restaurant" />  &nbsp; </td>
-            <tr>
-                <th>Name</th>
-                <td>@restaurant.Name</td>
-            </tr>
-            <tr>
-                <th>Location</th>
-                <td>@restaurant.Location</td>
-            </tr>
-            <tr>
-                <th>Food Type</th>
-                <td>@restaurant.FoodTag</td>
-            </tr>
-            <tr>
-                <th>Website</th>
-                <td><a href="@restaurant.Url" target="_blank">@restaurant.Url</a></td>
-                <br />
-                <br/>
-            </tr>
-        </table>*@
+                <td><input type="checkbox" name="restaurantIds" value="restaurant" />  &nbsp; </td>
+                <tr>
+                    <th>Name</th>
+                    <td>@restaurant.Name</td>
+                </tr>
+                <tr>
+                    <th>Location</th>
+                    <td>@restaurant.Location</td>
+                </tr>
+                <tr>
+                    <th>Food Type</th>
+                    <td>@restaurant.FoodTag</td>
+                </tr>
+                <tr>
+                    <th>Website</th>
+                    <td><a href="@restaurant.Url" target="_blank">@restaurant.Url</a></td>
+                    <br />
+                    <br/>
+                </tr>
+            </table>*@
 
-        
+
     }
     else
     {
@@ -111,13 +109,11 @@
         <br />
         <p>No matching results</p>
     }
-
-
 </form>
 
 
 
-    @*<br />
-    <input type="submit" value="Delete Selected Profiles" class="btn btn-danger">
-    <p><a asp-controller="Profile" asp-action="Index">Return</a></p>*@
+<br />
+<input type="submit" value="Add Selected Restaurants" class="btn btn-success">
+<p><a asp-controller="Profile" asp-action="Index">Return</a></p>
 
