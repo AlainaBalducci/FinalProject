@@ -1,5 +1,7 @@
 ﻿
 
+using System.Xml.Linq;
+
 namespace Kapow.Models
 {
     public class Profile
@@ -9,12 +11,21 @@ namespace Kapow.Models
         public string? FirstName { get; set; }
         public string? HomeBase { get; set; }
         public string? ImageUrl { get; set; }
+
         public string? Restaurant1 { get; set; }
         public string? Restaurant2 { get; set; }
         public string? Restaurant3 { get; set; }
         public string? Restaurant4 { get; set; }
         public string? Restaurant5 { get; set; }
 
+        //public ICollection<RestaurantDto>? Restaurants { get; set; }
+
+
+        //public Profile(string userName)
+        //{
+        //    UserName = userName;
+        //    Restaurants = new List<RestaurantDto>();
+        //}
 
 
         public Profile() { }

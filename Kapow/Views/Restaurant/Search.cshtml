@@ -1,6 +1,5 @@
 ﻿@model List<Kapow.Models.RestaurantDto>
 
-
 <form action="Search" method="Post">
     <h3>Search for Restaurant by:</h3>
     <br />
@@ -109,11 +108,13 @@
         <br />
         <p>No matching results</p>
     }
+    <br />
+    <input type="submit" value="Add Selected Restaurants" class="btn btn-success">
 </form>
 
 
 
-<br />
-<input type="submit" value="Add Selected Restaurants" class="btn btn-success">
+@*<br />
+<input type="submit" value="Add Selected Restaurants" class="btn btn-success">*@
 <p><a asp-controller="Profile" asp-action="Index">Return</a></p>
 

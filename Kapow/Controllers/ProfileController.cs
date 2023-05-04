@@ -25,6 +25,8 @@ namespace Kapow.Controllers
         }
 
 
+
+
         //List All Users
         public IActionResult Index()
         {
@@ -35,14 +37,14 @@ namespace Kapow.Controllers
 
 
 
+
+
         [HttpGet]
         public IActionResult Match()
         {
             List<Profile> profiles = context.Profiles.ToList();
             return View(profiles);
         }
-
-
 
         [HttpPost]
         public async Task<IActionResult> Match(string profileId1, string profileId2)
@@ -100,10 +102,6 @@ namespace Kapow.Controllers
             return View("MatchResult", restaurant);
         }
 
-
-
-
-
         public IActionResult MatchResult()
         {
             return View();
@@ -119,9 +117,6 @@ namespace Kapow.Controllers
             return View(addProfileViewModel);
 
         }
-        
-
-
 
         [HttpPost]
         public IActionResult Create(AddProfileViewModel addProfileViewModel)
@@ -134,6 +129,7 @@ namespace Kapow.Controllers
                     FirstName = addProfileViewModel.FirstName,
                     HomeBase = addProfileViewModel.HomeBase,
                     ImageUrl = addProfileViewModel.ImageUrl,
+                    //Restaurants = ""
                     Restaurant1 = "",
                     Restaurant2 = "",
                     Restaurant3 = "",
@@ -150,6 +146,37 @@ namespace Kapow.Controllers
 
 
 
+        //public IActionResult Add()
+        //{
+        //    List<RestaurantDto> restaurants = context.Restaurants.ToList();
+
+        //    AddProfileViewModel addProfileViewModel = new AddProfileViewModel(restaurants);
+        //    return View(addProfileViewModel);
+        //}
+
+        //[HttpPost]
+        //public IActionResult Add(AddJobViewModel addJobViewModel)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        Employer theEmployer = context.Employers.Find(addJobViewModel.EmployerId);
+        //        Job newJob = new Job
+        //        {
+        //            Name = addJobViewModel.Name,
+        //            Employer = theEmployer
+        //        };
+
+        //        context.Jobs.Add(newJob);
+        //        context.SaveChanges();
+
+        //        return Redirect("/Job");
+        //    }
+        //    return View(addJobViewModel);
+        //}
+
+
+
+
 
         //Delete Profiles
         [Authorize(Roles = "Admin")]
@@ -161,7 +188,6 @@ namespace Kapow.Controllers
 
             return View(profiles);
         }
-
 
         [HttpPost]
         [Authorize(Roles = "Admin")]

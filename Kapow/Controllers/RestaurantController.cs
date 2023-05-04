@@ -151,9 +151,6 @@ namespace Kapow.Controllers
         }
 
 
-
-
-        
         [HttpPost]
         public async Task<IActionResult> AddRestaurant(AddRestaurantViewModel addRestaurantViewModel)
         {
@@ -172,6 +169,24 @@ namespace Kapow.Controllers
                     allRestaurants = JsonConvert.DeserializeObject<List<RestaurantDto>>(RestaurantResponse);
                 }
             }
+
+            //    if (ModelState.IsValid)
+            //    {
+            //        int profileId = addRestaurantViewModel.ProfileId;
+            //        int restaurantId = addRestaurantViewModel.RestaurantId;
+
+            //        Profile theProfile = context.Profiles.Include(s => s.Restaurants).Where(j => j.Id == profileId).First();
+            //        RestaurantDto theRestaurant = context.Restaurants.Where(s => s.Id == restaurantId).First();
+
+            //        theProfile.Restaurants.Add(theRestaurant);
+
+            //        context.SaveChanges();
+
+            //        return Redirect("/Profile/About/" + profileId);
+            //    }
+
+            //    return View(addRestaurantViewModel);
+            //}
 
 
             if (ModelState.IsValid)
@@ -233,28 +248,6 @@ namespace Kapow.Controllers
             }
             return View();
         }
-
-
-
-
-
-
-        //[HttpPost]
-        //public IActionResult AddJob(AddSkillViewModel addSkillViewModel)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        int jobId = addSkillViewModel.JobId;
-        //        int skillId = addSkillViewModel.SkillId;
-        //        Job theJob = context.Jobs.Include(s => s.Skills).Where(j => j.Id == jobId).First();
-        //        Skill theSkill = context.Skills.Where(s => s.Id == skillId).First();
-        //        theJob.Skills.Add(theSkill);
-        //        context.SaveChanges();
-        //        return Redirect("/Job/Detail/" + jobId);
-        //    }
-        //    return View(addSkillViewModel);
-        //}
-
 
 
 

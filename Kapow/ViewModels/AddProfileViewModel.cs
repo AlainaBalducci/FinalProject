@@ -17,7 +17,6 @@ namespace Kapow.ViewModels
         [Url]
         public string? ImageUrl { get; set; }
 
-
         public AddProfileViewModel()
 		{
 		}

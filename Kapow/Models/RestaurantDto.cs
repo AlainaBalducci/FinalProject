@@ -11,6 +11,21 @@ namespace Kapow.Models
         [NotMapped]
         public FoodTag FoodTag { get; set; }
 
+        //public Profile? Profile { get; set; }
+        //public int? ProfileId { get; set; }
+
+        //public ICollection<Profile>? Profiles { get; set; }
+
+        //public RestaurantDto(string name)
+        //{
+        //    Name = name;
+        //    Profiles = new List<Profile>();
+        //}
+
+        public RestaurantDto()
+        {
+        }
+
     }
     public enum FoodTag
     {
