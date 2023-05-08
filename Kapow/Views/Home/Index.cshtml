@@ -107,6 +107,7 @@
             "Blood & Sand", "Aubergine", "Salt & Smoke", "Nixta", "Rooster", "The Vine Café",
             "Carmine's Steak", "Broadway Oyster", "Firebirds", "Tucanos", "Spiro's", "The Royale"];
 
+            //This block of code defines a function shuffle() which takes an array as input and shuffles its elements using the Fisher - Yates algorithm.
         function shuffle(array) {
             var m = array.length, t, i;
 
@@ -239,3 +240,13 @@
         drawRouletteWheel();
     </script>
 </body>
+
+@*
+These functions are used to draw a roulette wheel and spin it. The drawRouletteWheel() function 
+creates a canvas element and uses its context to draw a wheel with 12 sections, each section representing 
+a restaurant. The spin() function randomly generates a spin angle and a spin time, and calls the 
+rotateWheel() function. The rotateWheel() function updates the spin angle and redraws the wheel on the 
+canvas repeatedly until the spin time has elapsed. The stopRotateWheel() function stops the spinning 
+animation, calculates the index of the section that the arrow is pointing to, and displays the name 
+of the selected restaurant on the canvas. The easeOut() function calculates the easing effect for the 
+spinning animation.*@
