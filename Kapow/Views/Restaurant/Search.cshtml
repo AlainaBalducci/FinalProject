@@ -97,6 +97,7 @@
             <option value="Restaurant4"> Restaurant 4: @ViewBag.theProfile.Restaurant4</option>
             <option value="Restaurant5"> Restaurant 5: @ViewBag.theProfile.Restaurant5</option>
         </select>
+          <p><a asp-route-id="@ViewBag.theProfile.Id" asp-controller="Profile" asp-action="About">Back to Profile</a></p>
         <br /><br/>
         <input type="submit" value="Add Selected Restaurant" class="btn btn-success">
     </form>
