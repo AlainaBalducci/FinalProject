@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Kapow.Migrations
 {
-    public partial class profileEdit : Migration
+    public partial class morerestaurantsmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -249,12 +249,12 @@ namespace Kapow.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "71b0eecd-21fd-4bfe-85d3-58cde31058dc", "2", "User", "User" });
+                values: new object[] { "1ca378b8-f09b-4cf8-826e-0302bb442225", "1", "Admin", "Admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "7b0da8fb-dbae-49cd-81e1-dba3ac286897", "1", "Admin", "Admin" });
+                values: new object[] { "df3950fb-82d8-4ca3-ae15-66daf72cebee", "2", "User", "User" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

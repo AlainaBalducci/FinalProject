@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kapow.Migrations
 {
     [DbContext(typeof(ProfileDbContext))]
-    [Migration("20230509164826_profileEdit")]
-    partial class profileEdit
+    [Migration("20230509182348_morerestaurantsmigration")]
+    partial class morerestaurantsmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -110,14 +110,14 @@ namespace Kapow.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7b0da8fb-dbae-49cd-81e1-dba3ac286897",
+                            Id = "1ca378b8-f09b-4cf8-826e-0302bb442225",
                             ConcurrencyStamp = "1",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
-                            Id = "71b0eecd-21fd-4bfe-85d3-58cde31058dc",
+                            Id = "df3950fb-82d8-4ca3-ae15-66daf72cebee",
                             ConcurrencyStamp = "2",
                             Name = "User",
                             NormalizedName = "User"
