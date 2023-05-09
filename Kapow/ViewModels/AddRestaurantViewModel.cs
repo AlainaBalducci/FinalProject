@@ -13,9 +13,10 @@ namespace Kapow.ViewModels
         public int RestaurantId3 { get; set; }
         public int RestaurantId4 { get; set; }
         public int RestaurantId5 { get; set; }
-        public AddRestaurantViewModel(Profile theProfile, List<RestaurantDto> possibleRestaurants) { 
+        public AddRestaurantViewModel(Profile theProfile, List<RestaurantDto> possibleRestaurants)
+        {
             Restaurants = new List<SelectListItem>();
-            foreach(var restaurant in possibleRestaurants)
+            foreach (var restaurant in possibleRestaurants)
             {
                 Restaurants.Add(new SelectListItem
                 {
@@ -23,7 +24,7 @@ namespace Kapow.ViewModels
                     Text = restaurant.Name,
                 });
             }
-            Profile = theProfile;   
+            Profile = theProfile;
         }
         public AddRestaurantViewModel() { }
     }

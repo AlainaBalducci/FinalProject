@@ -1,59 +1,69 @@
 ﻿@model List<Kapow.Models.RestaurantDto>
 
-<form action="Search" method="Post">
-    <h3>Search for Restaurant by:</h3>
-    <br />
-    <span>
-        <label>
-            <input type="radio" name="searchType" value="Name">
-            <b>Name&ensp;</b>
-        </label>
-        <label for="keyword"></label>
-        <input type="text" name="keyword" id="searchTerm" />
-        <br /><br />
-        <label>
-            <input type="radio" name="searchType" value="Location">
-            <b>Location&ensp;</b>
-        </label>
-        <b></b>
-        <select name="selectTerm">
-            <option value="Central West End"> Central West End</option>
-            <option value="South Grand"> South Grand</option>
-            <option value="Downtown St. Louis"> Downtown St. Louis</option>
-            <option value="St. Charles"> St. Charles</option>
-            <option value="Tower Grove"> Tower Grove</option>
-        </select>
-        <br /><br />
-        <label>
-            <input type="radio" name="searchType" value="Food Type">
-            <b>Food Type&ensp;</b>
-        </label>
-        <b></b>
-        <select name="foodType" id="cars">
-            <option value="0"> Mexican</option>
-            <option value="1"> Mediterranean</option>
-            <option value="2"> Thai</option>
-            <option value="3"> Vegan</option>
-            <option value="4"> Persian</option>
-            <option value="5"> Pizza</option>
-            <option value="6"> Vietnamese</option>
-            <option value="7"> American</option>
-            <option value="8"> Steak</option>
-            <option value="9"> Seafood</option>
-            <option value="10"> Barbecue</option>
-            <option value="11"> Greek</option>
-            <option value="12"> Breakfast</option>
-            <option value="13"> Brazillian</option>
-        </select>
+@if (Model.Count >= 0)
+{
+    <form action="Search" method="Post">
+        <input type="hidden" name="profileId" value="@ViewBag.theProfile.Id" />
+        <h3>Search for Restaurant by:</h3>
         <br />
-    </span>
-    <br />
-    <input type="submit" value="Search" class="btn btn-success" />
-    <p><a asp-controller="Restaurant" asp-action="Search">All Restaurants</a></p>
-</form>
-<form method="post">
-    @if (Model.Count > 0)
-    {
+        <div>
+            <label>
+                <input type="radio" name="searchType" value="Name">
+                <b>Name&ensp;</b>
+            </label>
+            <label for="keyword"></label>
+            <input type="text" name="keyword" id="searchTerm" />
+            <br /><br />
+
+            <label>
+                <input type="radio" name="searchType" value="Location">
+                <b>Location&ensp;</b>
+            </label>
+            <select name="selectTerm">
+                <option value="Central West End"> Central West End</option>
+                <option value="South Grand"> South Grand</option>
+                <option value="Downtown St. Louis"> Downtown St. Louis</option>
+                <option value="St. Charles"> St. Charles</option>
+                <option value="Tower Grove"> Tower Grove</option>
+            </select>
+            <br /><br />
+
+            <label>
+                <input type="radio" name="searchType" value="Food Type">
+                <b>Food Type&ensp;</b>
+            </label>
+            <select name="foodType" id="cars">
+                <option value="0"> Mexican</option>
+                <option value="1"> Mediterranean</option>
+                <option value="2"> Thai</option>
+                <option value="3"> Vegan</option>
+                <option value="4"> Persian</option>
+                <option value="5"> Pizza</option>
+                <option value="6"> Vietnamese</option>
+                <option value="7"> American</option>
+                <option value="8"> Steak</option>
+                <option value="9"> Seafood</option>
+                <option value="10"> Barbecue</option>
+                <option value="11"> Greek</option>
+                <option value="12"> Breakfast</option>
+                <option value="13"> Brazillian</option>
+            </select>
+            <br />
+        </div>
+        <br />
+        <input type="submit" value="Search" class="btn btn-success" />
+        <p><a asp-route-id="@ViewBag.theProfile.Id" asp-controller="Restaurant" asp-action="Search">All Restaurants</a></p>
+    </form>
+}
+
+
+@if (Model.Count > 0)
+{
+    <form asp-action="AddRestaurant" asp-controller="Restaurant" method="post">
+        <input type="hidden" name="profileId" value="@ViewBag.theProfile.Id" />
+        @*<br />
+        <br />*@
+
         <table class="table">
             <tr>
                 <th>Select</th>
@@ -63,58 +73,64 @@
                 <th>Website</th>
                 <br />
             </tr>
-
             @foreach (var restaurant in Model)
             {
                 <tr>
-                    <td><input type="checkbox" name="restaurantIds" value="@restaurant.Id" />  &nbsp; </td>
+                    <td><input type="radio" name="chosenRestaurant" value="@restaurant.Name" />  &nbsp; </td>
                     <td>@restaurant.Name  &nbsp; </td>
                     <td>@restaurant.Location  &nbsp; </td>
                     <td>@restaurant.FoodTag  &nbsp; </td>
                     <td><a href="@restaurant.Url" target="_blank">@restaurant.Url</a></td>
                     <br />
                 </tr>
-
             }
         </table>
-
-        @*<table class="job-listing">
-                <td><input type="checkbox" name="restaurantIds" value="restaurant" />  &nbsp; </td>
-                <tr>
-                    <th>Name</th>
-                    <td>@restaurant.Name</td>
-                </tr>
-                <tr>
-                    <th>Location</th>
-                    <td>@restaurant.Location</td>
-                </tr>
-                <tr>
-                    <th>Food Type</th>
-                    <td>@restaurant.FoodTag</td>
-                </tr>
-                <tr>
-                    <th>Website</th>
-                    <td><a href="@restaurant.Url" target="_blank">@restaurant.Url</a></td>
-                    <br />
-                    <br/>
-                </tr>
-            </table>*@
-
-
-    }
-    else
-    {
-        <br />
-        <br />
-        <p>No matching results</p>
-    }
+        <br /><br/>
+        <label>
+            <h5>Choose which Restaurant to Edit&ensp;</h5>
+        </label>
+        <br/>
+        <select name="userRestaurant">
+            <option value="Restaurant1"> Restaurant 1: @ViewBag.theProfile.Restaurant1</option>
+            <option value="Restaurant2"> Restaurant 2: @ViewBag.theProfile.Restaurant2</option>
+            <option value="Restaurant3"> Restaurant 3: @ViewBag.theProfile.Restaurant3</option>
+            <option value="Restaurant4"> Restaurant 4: @ViewBag.theProfile.Restaurant4</option>
+            <option value="Restaurant5"> Restaurant 5: @ViewBag.theProfile.Restaurant5</option>
+        </select>
+        <br /><br/>
+        <input type="submit" value="Add Selected Restaurant" class="btn btn-success">
+    </form>
+}
+else
+{
+    <input type="hidden" name="profileId" value="@ViewBag.theProfile.Id" />
     <br />
-    <input type="submit" value="Add Selected Restaurants" class="btn btn-success">
-</form>
-
-
-
-@*<br />
-<input type="submit" value="Add Selected Restaurants" class="btn btn-success">*@
+    <br />
+    <p>No matching results</p>
+}
 <p><a asp-controller="Profile" asp-action="Index">Return</a></p>
 
+
+
+
+@*<table class="job-listing">
+        <td><input type="checkbox" name="restaurantIds" value="restaurant" />  &nbsp; </td>
+        <tr>
+            <th>Name</th>
+            <td>@restaurant.Name</td>
+        </tr>
+        <tr>
+            <th>Location</th>
+            <td>@restaurant.Location</td>
+        </tr>
+        <tr>
+            <th>Food Type</th>
+            <td>@restaurant.FoodTag</td>
+        </tr>
+        <tr>
+            <th>Website</th>
+            <td><a href="@restaurant.Url" target="_blank">@restaurant.Url</a></td>
+            <br />
+            <br/>
+        </tr>
+    </table>*@

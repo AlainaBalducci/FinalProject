@@ -3,7 +3,9 @@ using Kapow.Models;
 using Kapow.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using NuGet.Protocol;
 using System;
@@ -144,15 +146,6 @@ namespace Kapow.Controllers
         }
 
 
-
-
-        //public IActionResult Add()
-        //{
-        //    List<RestaurantDto> restaurants = context.Restaurants.ToList();
-
-        //    AddProfileViewModel addProfileViewModel = new AddProfileViewModel(restaurants);
-        //    return View(addProfileViewModel);
-        //}
 
         //[HttpPost]
         //public IActionResult Add(AddJobViewModel addJobViewModel)

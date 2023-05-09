@@ -18,16 +18,6 @@ namespace Kapow.Models
         public string? Restaurant4 { get; set; }
         public string? Restaurant5 { get; set; }
 
-        //public ICollection<RestaurantDto>? Restaurants { get; set; }
-
-
-        //public Profile(string userName)
-        //{
-        //    UserName = userName;
-        //    Restaurants = new List<RestaurantDto>();
-        //}
-
-
         public Profile() { }
 
         //public override string ToString()
