@@ -18,7 +18,7 @@ namespace Kapow.Controllers
     //[Authorize(Roles = "Admin")]
     public class ProfileController : Controller
     {
-        
+
         private ProfileDbContext context;
         string Baseurl = "https://localhost:7157";
         public ProfileController(ProfileDbContext dbContext)
@@ -123,6 +123,16 @@ namespace Kapow.Controllers
         [HttpPost]
         public IActionResult Create(AddProfileViewModel addProfileViewModel)
         {
+            List<Profile> profiles = context.Profiles.ToList();
+            foreach (Profile p in profiles)
+            {
+                if (p.UserEmail == User.Identity.Name)
+                {
+                    ViewBag.error = "Sorry, you already have a profile with this account";
+                    return View("Create", addProfileViewModel);
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 Profile newProfile = new Profile
@@ -136,14 +146,16 @@ namespace Kapow.Controllers
                     Restaurant2 = "",
                     Restaurant3 = "",
                     Restaurant4 = "",
-                    Restaurant5 = ""
+                    Restaurant5 = "",
+                    UserEmail = User.Identity.Name
                 };
                 context.Profiles.Add(newProfile);
                 context.SaveChanges();
                 return Redirect("/profile");
             }
             return View("Create", addProfileViewModel);
-        
+        }
+
         //Delete profiles
         [Authorize(Roles = "Admin")]
         public IActionResult Delete()
@@ -168,18 +180,23 @@ namespace Kapow.Controllers
             context.SaveChanges();
 
             return Redirect("/profile");
-
-        public IActionResult Edit()
-        {
-            return View();
         }
 
+            public IActionResult Edit()
+            {
+                return View();
+            }
 
-        //Show details of an individual profile
-        public IActionResult About(int id)
-        {
-            Profile selectedProfile = context.Profiles.Find(id);
-            return View(selectedProfile);
+
+            //Show details of an individual profile
+            public IActionResult About(int id)
+            {
+                Profile selectedProfile = context.Profiles.Find(id);
+                return View(selectedProfile);
+            }
         }
     }
-}
+
+    
+
+        
