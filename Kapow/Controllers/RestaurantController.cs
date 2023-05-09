@@ -186,31 +186,31 @@ namespace Kapow.Controllers
             {
                 selectedProfile.Restaurant1 = chosenRestaurant;
                 context.SaveChanges();
-                return Redirect("/Profile/About/" + profileId);
+                return Redirect("/Restaurant/Search/" + profileId);
             }
             else if (userRestaurant == "Restaurant2")
             {
                 selectedProfile.Restaurant2 = chosenRestaurant;
                 context.SaveChanges();
-                return Redirect("/Profile/About/" + profileId);
+                return Redirect("/Restaurant/Search/" + profileId);
             }
             else if (userRestaurant == "Restaurant3")
             {
                 selectedProfile.Restaurant3 = chosenRestaurant;
                 context.SaveChanges();
-                return Redirect("/Profile/About/" + profileId);
+                return Redirect("/Restaurant/Search/" + profileId);
             }
             else if (userRestaurant == "Restaurant4")
             {
                 selectedProfile.Restaurant4 = chosenRestaurant;
                 context.SaveChanges();
-                return Redirect("/Profile/About/" + profileId);
+                return Redirect("/Restaurant/Search/" + profileId);
             }
             else if (userRestaurant == "Restaurant5")
             {
                 selectedProfile.Restaurant5 = chosenRestaurant;
                 context.SaveChanges();
-                return Redirect("/Profile/About/" + profileId);
+                return Redirect("/Restaurant/Search/" + profileId);
             }
             return View();
         }
