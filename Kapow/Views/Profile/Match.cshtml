@@ -1,8 +1,11 @@
-﻿@using Kapow.Models;
+@using Kapow.Models;
 @model List<Kapow.Models.Profile>
 @{
     bool isFirstOption = true;
 }
+ <h1>Choose Your Date, Mate</h1>
+    <br/>
+    <br/>
 <form action="Match" method="post">
     <table class="table">
         <tr>
@@ -17,7 +20,7 @@
                 <td>
                     <label>
                         <input type="radio" name="profileId1" value="@profile.Id" @(isFirstOption ? "checked" : "")>
-                        Match with them!
+                        Choose Profile!
                     </label>
                     @if (isFirstOption)
                     {
@@ -46,7 +49,7 @@
                 <td><a asp-controller="Profile" asp-action="About" asp-route-id="@profile.Id">@profile.UserName</a></td>
                 <td>
                     <input type="radio" name="profileId2" value="@profile.Id" @(isFirstOption1 ? "checked" : "")>
-                    <label for="profile_@profile.Id">Match with them!</label>
+                    <label for="profile_@profile.Id">Choose Profile!</label>
                     @if (isFirstOption1)
                     {
                         isFirstOption1 = false;
@@ -54,8 +57,8 @@
                     <br>
                 </td>
             </tr>
-        }
-    </table>
-    <br />
-    <input type="submit" value="Match Restaurant!" />
+            }
+        </table>
+        <br />
+        <input type="submit" value="Find a Match!" />
     </form>

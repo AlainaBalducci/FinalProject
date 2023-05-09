@@ -1,17 +1,41 @@
 ﻿@model Kapow.Models.Profile
 
 <h1>Profile</h1>
+<br />
+<br/>
 <div style="display: flex;">
     <div style="flex: 1;">
-        <p>Username: @Model.UserName</p>
-        <p>First Name: @Model.FirstName</p>
-        <p>Hometown: @Model.HomeBase</p>
-         <p>restaurant1: @Model.Restaurant1</p>
-        <p>restaurant2: @Model.Restaurant2</p>
-        <p>restaurant3: @Model.Restaurant3</p>
+        <p><b>Username</b>: @Model.UserName</p>
+        <p><b>First Name</b>: @Model.FirstName</p>
+        <p><b>Hometown</b>: @Model.HomeBase</p>
+        <table class="table">
+            <tr>
+                <th>Restaurant List</th>
+            </tr>
+            @*<tr>
+                <td>&ensp;@Model.Restaurants</td>
+            </tr>*@
+            <tr>
+                <td>&ensp;@Model.Restaurant1</td>
+            </tr>
+            <tr>
+                <td>&ensp;@Model.Restaurant2</td>
+            </tr>
+            <tr>
+                <td>&ensp;@Model.Restaurant3</td>
+            </tr>
+            <tr>
+                <td>&ensp;@Model.Restaurant4</td>
+            </tr>
+            <tr>
+                <td>&ensp;@Model.Restaurant5</td>
+            </tr>
+        </table>
     </div>
     <div style="flex: 1;">
-    <img src="@Model.ImageUrl" width="170" height="170"/>
+        <img src="@Model.ImageUrl" width="170" height="170" />
     </div>
 </div>
-<a asp-controller="Restaurant" asp-action="AddProfile" asp-route-id = "@Model.Id">Add restaurant to list!</a>
+<a asp-controller="Restaurant" asp-action="Search" asp-route-id="@Model.Id">Edit Restaurant List</a>
+
+

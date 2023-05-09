@@ -1,5 +1,7 @@
 ﻿
 
+using System.Xml.Linq;
+
 namespace Kapow.Models
 {
     public class Profile
@@ -9,10 +11,12 @@ namespace Kapow.Models
         public string? FirstName { get; set; }
         public string? HomeBase { get; set; }
         public string? ImageUrl { get; set; }
+
         public string? Restaurant1 { get; set; }
         public string? Restaurant2 { get; set; }
         public string? Restaurant3 { get; set; }
-
+        public string? Restaurant4 { get; set; }
+        public string? Restaurant5 { get; set; }
 
         public Profile() { }
 
@@ -38,6 +42,8 @@ namespace Kapow.Models
             list.Add(Restaurant1);
             list.Add(Restaurant2);
             list.Add(Restaurant3);
+            list.Add(Restaurant4);
+            list.Add(Restaurant5);
             return list;
         }
     }

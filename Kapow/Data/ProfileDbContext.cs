@@ -23,6 +23,12 @@ namespace Kapow.Data
             //    .HasMany(p => p.Restaurants);
 
 
+            ////set up your connection for many to many (skills to jobs)
+            //modelBuilder.Entity<Profile>()
+            //    .HasMany(e => e.Restaurants)
+            //    .WithMany(e => e.Profiles)
+            //    .UsingEntity(j => j.ToTable("ProfileRestaurants"));
+
             base.OnModelCreating(modelBuilder);
             SeedRoles(modelBuilder);
         }
