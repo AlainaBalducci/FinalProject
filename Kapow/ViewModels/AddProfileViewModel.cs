@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Kapow.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Kapow.ViewModels
 {
@@ -16,7 +18,6 @@ namespace Kapow.ViewModels
 
         [Url]
         public string? ImageUrl { get; set; }
-
 
         public AddProfileViewModel()
 		{

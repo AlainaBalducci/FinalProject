@@ -3,7 +3,9 @@ using Kapow.Models;
 using Kapow.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using NuGet.Protocol;
 using System;
@@ -24,6 +26,9 @@ namespace Kapow.Controllers
             context = dbContext;
         }
 
+
+
+
         //List All Users
         public IActionResult Index()
         {
@@ -31,6 +36,11 @@ namespace Kapow.Controllers
             List<Profile> profiles = context.Profiles.ToList();
             return View(profiles);
         }
+
+
+
+
+
         [HttpGet]
         public IActionResult Match()
         {
@@ -94,22 +104,21 @@ namespace Kapow.Controllers
             return View("MatchResult", restaurant);
         }
 
-
-
-
-
         public IActionResult MatchResult()
         {
             return View();
         }
-            //Add/create Profile
-            public IActionResult Create()
-            {
-                AddProfileViewModel addProfileViewModel = new AddProfileViewModel();
-                return View(addProfileViewModel);
 
-            }
-        
+
+
+
+        //Add/create Profile
+        public IActionResult Create()
+        {
+            AddProfileViewModel addProfileViewModel = new AddProfileViewModel();
+            return View(addProfileViewModel);
+
+        }
 
         [HttpPost]
         public IActionResult Create(AddProfileViewModel addProfileViewModel)
@@ -122,9 +131,12 @@ namespace Kapow.Controllers
                     FirstName = addProfileViewModel.FirstName,
                     HomeBase = addProfileViewModel.HomeBase,
                     ImageUrl = addProfileViewModel.ImageUrl,
+                    //Restaurants = ""
                     Restaurant1 = "",
                     Restaurant2 = "",
-                    Restaurant3 = ""
+                    Restaurant3 = "",
+                    Restaurant4 = "",
+                    Restaurant5 = ""
                 };
                 context.Profiles.Add(newProfile);
                 context.SaveChanges();
@@ -132,6 +144,30 @@ namespace Kapow.Controllers
             }
             return View("Create", addProfileViewModel);
         }
+
+
+
+        //[HttpPost]
+        //public IActionResult Add(AddJobViewModel addJobViewModel)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        Employer theEmployer = context.Employers.Find(addJobViewModel.EmployerId);
+        //        Job newJob = new Job
+        //        {
+        //            Name = addJobViewModel.Name,
+        //            Employer = theEmployer
+        //        };
+
+        //        context.Jobs.Add(newJob);
+        //        context.SaveChanges();
+
+        //        return Redirect("/Job");
+        //    }
+        //    return View(addJobViewModel);
+        //}
+
+
 
 
 
@@ -163,10 +199,14 @@ namespace Kapow.Controllers
 
 
 
+
+
         public IActionResult Edit()
         {
             return View();
         }
+
+
 
 
         //Show details of an individual profile
@@ -175,7 +215,5 @@ namespace Kapow.Controllers
             Profile selectedProfile = context.Profiles.Find(id);
             return View(selectedProfile);
         }
-
-       
     }
 }

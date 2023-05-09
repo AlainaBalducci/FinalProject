@@ -11,6 +11,10 @@ namespace Kapow.Models
         [NotMapped]
         public FoodTag FoodTag { get; set; }
 
+        public RestaurantDto()
+        {
+        }
+
     }
     public enum FoodTag
     {
