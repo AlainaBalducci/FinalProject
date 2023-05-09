@@ -143,35 +143,8 @@ namespace Kapow.Controllers
                 return Redirect("/profile");
             }
             return View("Create", addProfileViewModel);
-        }
-
-
-
-        //[HttpPost]
-        //public IActionResult Add(AddJobViewModel addJobViewModel)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        Employer theEmployer = context.Employers.Find(addJobViewModel.EmployerId);
-        //        Job newJob = new Job
-        //        {
-        //            Name = addJobViewModel.Name,
-        //            Employer = theEmployer
-        //        };
-
-        //        context.Jobs.Add(newJob);
-        //        context.SaveChanges();
-
-        //        return Redirect("/Job");
-        //    }
-        //    return View(addJobViewModel);
-        //}
-
-
-
-
-
-        //Delete Profiles
+        
+        //Delete profiles
         [Authorize(Roles = "Admin")]
         public IActionResult Delete()
         {
@@ -195,18 +168,11 @@ namespace Kapow.Controllers
             context.SaveChanges();
 
             return Redirect("/profile");
-        }
-
-
-
-
 
         public IActionResult Edit()
         {
             return View();
         }
-
-
 
 
         //Show details of an individual profile

@@ -1,35 +1,94 @@
 ﻿@model Kapow.ViewModels.AddProfileViewModel
+<head>
+    <style>
+        body {
+            background-image: url('https://img.freepik.com/premium-vector/abstract-smooth-blur-purple-gradient-background-website-banner-paper-card-decorative-design_120819-485.jpg?w=1060');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
 
-<h1>Create Your Profile</h1>
-<form asp-controller="Profile" asp-action="Create" method="post">
-    <div class="form-group">
-        <label asp-for="UserName"> Username</label>
-        <input asp-for="UserName" />
-        <span asp-validation-for="UserName" class="text-danger"></span>
-    </div>
-    <br />
-    <div class="form-group">
-        <label asp-for="FirstName">First Name</label>
-        <input asp-for="FirstName" />
-        <span asp-validation-for="FirstName" class="text-danger"></span>
-    </div>
-    <br />
-    <div class="form-group">
-        <label asp-for="HomeBase">Hometown</label>
-        <input asp-for="HomeBase" />
-        <span asp-validation-for="HomeBase" class="text-danger"></span>
-    </div>
-    <br />
-    <div class="form-group">
-        <label asp-for="ImageUrl">Profile Picture</label>
-        <input asp-for="ImageUrl" />
-        <span asp-validation-for="ImageUrl" class="text-danger"></span>
-    </div>
-    <br />
-    <input type="submit" value="Submit" />
-</form>
+       /* .couple-image {
+            background-image: url('https://thumbs.dreamstime.com/b/cute-couple-smartphone-online-dating-concept-white-background-illustration-178317605.jpg');
+            background-repeat: no-repeat;
+            height: 640px;
+            width: 800px;
+            border-radius: 50px;
+            margin-top: 1.5rem;
+        }*/
 
+        .form-group {
+            margin-bottom: 1rem;
+        }
 
+        label {
+            font-weight: bold;
+        }
+
+        /*.row {
+            justify-content: space-between;
+        }*/
+
+        input[type="text"] {
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            width: 33%;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+            .btn:hover {
+                background-color: #0062cc;
+            }
+    </style>
+</head>
+<body>
+    <h1>Create Your Profile</h1>
+   @* <div class="row">
+        <div class="col-md-4" style="margin-top: 4rem;">*@
+            <section>
+                <form asp-controller="Profile" asp-action="Create" method="post">
+                    <div class="form-group">
+                        <label asp-for="UserName"> Username</label>
+                        <input type="text" asp-for="UserName" class="form-control" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="FirstName">First Name</label>
+                        <input type="text" asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="HomeBase">Hometown</label>
+                        <input type="text" asp-for="HomeBase" class="form-control" />
+                        <span asp-validation-for="HomeBase" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="ImageUrl">Profile Picture</label>
+                        <input type="text" asp-for="ImageUrl" class="form-control" />
+                        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </section>
+       @* </div>
+        <div class="col-md-6 col-md-offset-2 couple-image">
+        </div>
+    </div>*@
+</body>
 
 
 

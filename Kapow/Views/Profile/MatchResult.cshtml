@@ -1,3 +1,60 @@
 ﻿@model Kapow.Models.RestaurantDto
 
-<p>@Model.Name</p>
+<head>
+    <style>
+        body {
+            background-image: url('https://img.freepik.com/premium-vector/abstract-smooth-blur-purple-gradient-background-website-banner-paper-card-decorative-design_120819-485.jpg?w=1060');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        h3 {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .title {
+            text-align: center;
+            font-family: cursive;
+            color: #dcdfe7cf;
+            font-weight: 400;
+            margin-bottom: 16px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+            a:hover {
+                text-decoration: none;
+                color: #dcdfe7cf;
+                font-weight: 800;
+            }
+            /*setting margin to auto makes is centered in both axes?*/
+        .couple-image {
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjnVR2j_E_fXemlE0OLLfpB0aepKullS0T1PKPUMQaeI1xmZZDRTCtZfGyKcW_Ss-yL3-oD_q4p7E&usqp=CAU&ec=48665698');
+            background-repeat: no-repeat;
+            height: 275px;
+            width: 275px;
+            display: block;
+            margin: 0 auto;
+            margin-top: 4rem;
+            /*border-radius: 50px;*/
+            /*margin-top: 4.5rem;
+            margin-left: 32rem;*/
+        }
+    </style>
+</head>
+<body>
+    
+        <h1 class="title">Your Match is...</h1>
+        <h2>@Model.Name!</h2>
+        <h3>Where: @Model.Location</h3>
+        <h3><a href="@Model.Url" target="_blank">Here's the link to your restaurant!</a></h3>
+        <div class="couple-image">
+        </div>
+    
+</body>
