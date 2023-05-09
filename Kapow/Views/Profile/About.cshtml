@@ -36,6 +36,9 @@
         <img src="@Model.ImageUrl" width="170" height="170" />
     </div>
 </div>
-<a asp-controller="Restaurant" asp-action="Search" asp-route-id="@Model.Id">Edit Restaurant List</a>
+@if (Model.UserEmail == User.Identity.Name)
+{
+    <a asp-controller="Restaurant" asp-action="Search" asp-route-id="@Model.Id">Edit Restaurant List</a>
+}
 
 

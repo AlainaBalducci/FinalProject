@@ -49,6 +49,10 @@ namespace Kapow.Controllers
         {
             List<RestaurantDto> allRestaurants = new List<RestaurantDto>();
             Profile theProfile = context.Profiles.Find(id);
+            if (theProfile.UserEmail != User.Identity.Name)
+            {
+                return Redirect("/profile");
+            }
             ViewBag.theProfile = theProfile;
 
             using (var client = new HttpClient())

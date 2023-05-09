@@ -17,6 +17,7 @@ namespace Kapow.Models
         public string? Restaurant3 { get; set; }
         public string? Restaurant4 { get; set; }
         public string? Restaurant5 { get; set; }
+        public string? UserEmail { get; set; }
 
         public Profile() { }
 
