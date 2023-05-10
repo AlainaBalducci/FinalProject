@@ -9,8 +9,8 @@ namespace Kapow.Data
 {
     public class ProfileDbContext : IdentityDbContext<IdentityUser>
     {
-        public DbSet<Profile> Profiles { get; set; }
-        public DbSet<RestaurantDto> Restaurants { get; set; }
+        public DbSet<Profile>? Profiles { get; set; }
+        public DbSet<RestaurantDto>? Restaurants { get; set; }
      
 
         public ProfileDbContext(DbContextOptions<ProfileDbContext> options) : base(options)
