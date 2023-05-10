@@ -4,6 +4,13 @@
  <h1>Choose Your Date, Mate</h1>
     <br/>
     <br/>
+<h3 style="color:red">
+    @if (ViewBag.error != null)
+    {
+        @ViewBag.error
+    }
+</h3>
+<br/>
 <form action="Match" method="post">
     <table class="table">
         @foreach (Profile profile in Model)

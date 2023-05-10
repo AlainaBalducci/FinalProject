@@ -35,7 +35,16 @@ namespace Kapow.Controllers
         {
             // can add query to populate list with profiles that have a nonempty favorite restaurant -- maybe
             List<Profile> profiles = context.Profiles.ToList();
-            return View(profiles);
+            foreach(Profile profile in profiles)
+            {
+                if(profile.UserEmail == User.Identity.Name) {
+                    //Redirect("/profile/about" + profile.Id);
+                    //return Redirect("/profile/about/"+ profile.Id.ToString());
+                    return View(profiles);
+                }
+
+            }
+            return View("create");
         }
 
 
@@ -75,6 +84,13 @@ namespace Kapow.Controllers
 
             List<string>? selectedProfile1List = selectedProfile1?.MakeRestaurantList();
             List<string>? selectedProfile2List = selectedProfile2?.MakeRestaurantList();
+
+            if (selectedProfile1List.Count == 0 && selectedProfile2List.Count == 0)
+            {
+                ViewBag.error = "No restaurants have been added. Please update your restaurant list.";
+                List<Profile> profiles = context.Profiles.ToList();
+                return View(profiles);
+            }
 
             foreach (string x in selectedProfile1List)
             {
@@ -155,7 +171,7 @@ namespace Kapow.Controllers
                 };
                 context.Profiles.Add(newProfile);
                 context.SaveChanges();
-                return Redirect("/profile");
+                return Redirect("/profile/about/" + newProfile.Id);
             }
             return View("Create", addProfileViewModel);
         }
