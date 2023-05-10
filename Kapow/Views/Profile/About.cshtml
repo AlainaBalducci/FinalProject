@@ -48,7 +48,14 @@
     </style>
 </head>
 <body>
-    <h1>Profile</h1>
+    @if (Model.UserEmail == User.Identity.Name)
+    {
+        <h1>My Profile</h1>
+    }
+    else
+    {
+        <h1>Profile</h1>
+    }
     <br />
     <br />
     <div class="row">
