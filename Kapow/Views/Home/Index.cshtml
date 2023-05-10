@@ -87,14 +87,30 @@
 
 <head>
     <style>
+        canvas {
+            display: block;
+            margin: auto;
+        }
+
+        .wheelButton {
+            display: block;
+            margin: auto;
+            background-color: #502143;
+            border-radius: 15px;
+            width: 15%;
+            color:#fff;
+            text-align: center;
+        }
+        
 
     </style>
 </head>
 <body>
 
-    <input type="button" value="spin" onclick="spin();" style="float:left;" />
+    
     
     <canvas id="canvas" width="500" height="500"></canvas>
+    <input type="button" value="SPIN THE WHEEL!" onclick="spin();" class="wheelButton" />
 
     <script>
         
@@ -225,7 +241,7 @@
             var arcd = arc * 180 / Math.PI;
             var index = Math.floor((360 - degrees % 360) / arcd);
             ctx.save();
-            ctx.font = 'bold 125%  Helvetica, Arial';
+            ctx.font = 'bold 150%  Helvetica, Arial';
             var text = restaraunts[index]
             ctx.fillText(text, 250 - ctx.measureText(text).width / 2, 250 + 10);
             ctx.restore();
