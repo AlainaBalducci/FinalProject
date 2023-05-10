@@ -37,6 +37,7 @@ namespace Kapow.Models
             return HashCode.Combine(Id);
         }
 
+  //returns a List<string> containing only the non-null and non-empty Restaurant variables
         public List<string> MakeRestaurantList()
         {
             List<string> list = new List<string>();

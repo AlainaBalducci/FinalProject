@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using NuGet.Protocol;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
 
@@ -89,6 +90,7 @@ namespace Kapow.Controllers
                     }
                 }
             }
+            //combines the restaurant lists from 2 profiles, selects a random restaurant from the combined list. random.Next() method generates a random integer between 0 and the number of elements in combinedList
             List<string> combinedList = selectedProfile1List.Concat(selectedProfile2List).ToList();
 
             Random random = new Random();
