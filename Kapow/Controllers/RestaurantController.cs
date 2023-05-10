@@ -27,7 +27,7 @@ namespace Kapow.Controllers
         //Get request to list off all restaurants
         public async Task<IActionResult> Index()
         {
-            List<RestaurantDto> allRestaurants = new List<RestaurantDto>();
+            List<RestaurantDto>? allRestaurants = new List<RestaurantDto>();
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(Baseurl);
@@ -47,8 +47,8 @@ namespace Kapow.Controllers
         [HttpGet]
         public async Task<IActionResult> Search(int id)
         {
-            List<RestaurantDto> allRestaurants = new List<RestaurantDto>();
-            Profile theProfile = context.Profiles.Find(id);
+            List<RestaurantDto>? allRestaurants = new List<RestaurantDto>();
+            Profile? theProfile = context.Profiles.Find(id);
             if (theProfile.UserEmail != User.Identity.Name)
             {
                 return Redirect("/profile");
@@ -74,10 +74,10 @@ namespace Kapow.Controllers
         [HttpPost]
         public async Task<IActionResult> Search(string selectTerm, string? keyword, string foodType, string searchType, string profileId)
         {
-            List<RestaurantDto> restaurants = new List<RestaurantDto>();
-            List<RestaurantDto> test = new List<RestaurantDto>();
+            List<RestaurantDto>? restaurants = new List<RestaurantDto>();
+            List<RestaurantDto>? test = new List<RestaurantDto>();
 
-            Profile selectedProfile = context.Profiles.Find(Int32.Parse(profileId));
+            Profile? selectedProfile = context.Profiles.Find(Int32.Parse(profileId));
             ViewBag.theProfile = selectedProfile;
 
             //GET data from api and house it in a variable
@@ -136,12 +136,12 @@ namespace Kapow.Controllers
 
         public async Task<IActionResult> AddRestaurant(int id)
         {
-            Profile theProfile = context.Profiles.Find(id);
+            Profile? theProfile = context.Profiles.Find(id);
             //List<RestaurantDto> possibleRestaurants = new List<RestaurantDto>();
 
             //test
-            List<RestaurantDto> possibleRestaurants = context.Restaurants.ToList();
-
+            List<RestaurantDto>? possibleRestaurants = context.Restaurants.ToList();
+           
 
             using (var client = new HttpClient())
             {
@@ -163,7 +163,8 @@ namespace Kapow.Controllers
         [HttpPost]
         public async Task<IActionResult> AddRestaurant(AddRestaurantViewModel addRestaurantViewModel, string profileId, string userRestaurant, string chosenRestaurant)
         {
-            List<RestaurantDto> allRestaurants = new List<RestaurantDto>();
+            List<RestaurantDto>? allRestaurants = new List<RestaurantDto>();
+            
 
 
             using (var client = new HttpClient())
@@ -180,8 +181,8 @@ namespace Kapow.Controllers
             }
 
 
-            Profile selectedProfile = context.Profiles.Find(Int32.Parse(profileId));
-
+            Profile? selectedProfile = context.Profiles.Find(Int32.Parse(profileId));
+            
             if (userRestaurant == "Restaurant1")
             {
                 selectedProfile.Restaurant1 = chosenRestaurant;

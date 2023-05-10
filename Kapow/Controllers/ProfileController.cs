@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using NuGet.Protocol;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
 
@@ -51,8 +52,8 @@ namespace Kapow.Controllers
         [HttpPost]
         public async Task<IActionResult> Match(string profileId1, string profileId2)
         {
-            List<RestaurantDto> allRestaurants = new List<RestaurantDto>();
-            RestaurantDto restaurant = null;
+            List<RestaurantDto>? allRestaurants = new List<RestaurantDto>();
+            RestaurantDto? restaurant = null;
 
             using (var client = new HttpClient())
             {
@@ -66,14 +67,14 @@ namespace Kapow.Controllers
                     allRestaurants = JsonConvert.DeserializeObject<List<RestaurantDto>>(RestaurantResponse);
                 }
             }
-            int id1 = Int32.Parse(profileId1);
-            int id2 = Int32.Parse(profileId2);
+            int? id1 = Int32.Parse(profileId1);
+            int? id2 = Int32.Parse(profileId2);
 
-            Profile selectedProfile1 = context.Profiles.Find(id1);
-            Profile selectedProfile2 = context.Profiles.Find(id2);
+            Profile? selectedProfile1 = context.Profiles.Find(id1);
+            Profile? selectedProfile2 = context.Profiles.Find(id2);
 
-            List<string> selectedProfile1List = selectedProfile1.MakeRestaurantList();
-            List<string> selectedProfile2List = selectedProfile2.MakeRestaurantList();
+            List<string>? selectedProfile1List = selectedProfile1?.MakeRestaurantList();
+            List<string>? selectedProfile2List = selectedProfile2?.MakeRestaurantList();
 
             foreach (string x in selectedProfile1List)
             {
@@ -89,15 +90,18 @@ namespace Kapow.Controllers
                     }
                 }
             }
+            //combines the restaurant lists from 2 profiles, selects a random restaurant from the combined list. random.Next() method generates a random integer between 0 and the number of elements in combinedList
+            List<string> combinedList = selectedProfile1List.Concat(selectedProfile2List).ToList();
 
-            var random = new Random();
-            int index = random.Next(0, selectedProfile1List.Count);
+            Random random = new Random();
+            string randomRestaurant = combinedList[random.Next(combinedList.Count)];
+
             foreach (var r in allRestaurants)
             {
-                if (r.Name == selectedProfile1List[index])
+                if (r.Name == randomRestaurant)
                 {
                     restaurant = r;
-
+                    break;
                 }
             }
 
@@ -123,7 +127,7 @@ namespace Kapow.Controllers
         [HttpPost]
         public IActionResult Create(AddProfileViewModel addProfileViewModel)
         {
-            List<Profile> profiles = context.Profiles.ToList();
+            List<Profile>? profiles = context.Profiles.ToList();
             foreach (Profile p in profiles)
             {
                 if (p.UserEmail == User.Identity.Name)

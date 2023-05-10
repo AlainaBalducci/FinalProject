@@ -37,15 +37,49 @@ namespace Kapow.Models
             return HashCode.Combine(Id);
         }
 
+  //returns a List<string> containing only the non-null and non-empty Restaurant variables
         public List<string> MakeRestaurantList()
         {
             List<string> list = new List<string>();
-            list.Add(Restaurant1);
-            list.Add(Restaurant2);
-            list.Add(Restaurant3);
-            list.Add(Restaurant4);
-            list.Add(Restaurant5);
+
+            if (!string.IsNullOrEmpty(Restaurant1))
+            {
+                list.Add(Restaurant1);
+            }
+
+            if (!string.IsNullOrEmpty(Restaurant2))
+            {
+                list.Add(Restaurant2);
+            }
+
+            if (!string.IsNullOrEmpty(Restaurant3))
+            {
+                list.Add(Restaurant3);
+            }
+
+            if (!string.IsNullOrEmpty(Restaurant4))
+            {
+                list.Add(Restaurant4);
+            }
+
+            if (!string.IsNullOrEmpty(Restaurant5))
+            {
+                list.Add(Restaurant5);
+            }
+
             return list;
         }
+
+
+        //public List<string> MakeRestaurantList()
+        //{
+        //    List<string>? list = new List<string>();
+        //    list.Add(Restaurant1);
+        //    list.Add(Restaurant2);
+        //    list.Add(Restaurant3);
+        //    list.Add(Restaurant4);
+        //    list.Add(Restaurant5);
+        //    return list;
+        //}
     }
 }
