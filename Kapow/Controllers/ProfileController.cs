@@ -3,10 +3,13 @@ using Kapow.Models;
 using Kapow.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using NuGet.Protocol;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
 
@@ -16,7 +19,7 @@ namespace Kapow.Controllers
     //[Authorize(Roles = "Admin")]
     public class ProfileController : Controller
     {
-        
+
         private ProfileDbContext context;
         string Baseurl = "https://localhost:7157";
         public ProfileController(ProfileDbContext dbContext)
@@ -24,25 +27,51 @@ namespace Kapow.Controllers
             context = dbContext;
         }
 
+
+
+
         //List All Users
         public IActionResult Index()
         {
             // can add query to populate list with profiles that have a nonempty favorite restaurant -- maybe
             List<Profile> profiles = context.Profiles.ToList();
-            return View(profiles);
+            ViewBag.allProfiles = profiles;
+            foreach(Profile profile in profiles)
+            {
+                if(profile.UserEmail == User.Identity.Name) {
+                    //Redirect("/profile/about/" + profile.Id);
+                    //return Redirect("/profile/about/" + profile.Id.ToString());
+                    return View(profiles);
+                }
+            }
+            return View("create");
         }
+
+
+
+
+
         [HttpGet]
         public IActionResult Match()
         {
             List<Profile> profiles = context.Profiles.ToList();
-            return View(profiles);
+            foreach (Profile profile in profiles)
+            {
+                if (profile.UserEmail == User.Identity.Name)
+                {
+                    ViewBag.theProfile = profile;
+                    return View(profiles);
+                }
+            }
+            return View("Create");
+
         }
 
         [HttpPost]
         public async Task<IActionResult> Match(string profileId1, string profileId2)
         {
-            List<RestaurantDto> allRestaurants = new List<RestaurantDto>();
-            RestaurantDto restaurant = null;
+            List<RestaurantDto>? allRestaurants = new List<RestaurantDto>();
+            RestaurantDto? restaurant = null;
 
             using (var client = new HttpClient())
             {
@@ -56,14 +85,21 @@ namespace Kapow.Controllers
                     allRestaurants = JsonConvert.DeserializeObject<List<RestaurantDto>>(RestaurantResponse);
                 }
             }
-            int id1 = Int32.Parse(profileId1);
-            int id2 = Int32.Parse(profileId2);
+            int? id1 = Int32.Parse(profileId1);
+            int? id2 = Int32.Parse(profileId2);
 
-            Profile selectedProfile1 = context.Profiles.Find(id1);
-            Profile selectedProfile2 = context.Profiles.Find(id2);
+            Profile? selectedProfile1 = context.Profiles.Find(id1);
+            Profile? selectedProfile2 = context.Profiles.Find(id2);
 
-            List<string> selectedProfile1List = selectedProfile1.MakeRestaurantList();
-            List<string> selectedProfile2List = selectedProfile2.MakeRestaurantList();
+            List<string>? selectedProfile1List = selectedProfile1?.MakeRestaurantList();
+            List<string>? selectedProfile2List = selectedProfile2?.MakeRestaurantList();
+
+            if (selectedProfile1List.Count == 0 && selectedProfile2List.Count == 0)
+            {
+                ViewBag.error = "No restaurants have been added. Please update your restaurant list.";
+                List<Profile> profiles = context.Profiles.ToList();
+                return View(profiles);
+            }
 
             foreach (string x in selectedProfile1List)
             {
@@ -79,41 +115,53 @@ namespace Kapow.Controllers
                     }
                 }
             }
+            //combines the restaurant lists from 2 profiles, selects a random restaurant from the combined list. random.Next() method generates a random integer between 0 and the number of elements in combinedList
+            List<string> combinedList = selectedProfile1List.Concat(selectedProfile2List).ToList();
 
-            var random = new Random();
-            int index = random.Next(0, selectedProfile1List.Count);
+            Random random = new Random();
+            string randomRestaurant = combinedList[random.Next(combinedList.Count)];
+
             foreach (var r in allRestaurants)
             {
-                if (r.Name == selectedProfile1List[index])
+                if (r.Name == randomRestaurant)
                 {
                     restaurant = r;
-
+                    break;
                 }
             }
 
             return View("MatchResult", restaurant);
         }
 
-
-
-
-
         public IActionResult MatchResult()
         {
             return View();
         }
-            //Add/create Profile
-            public IActionResult Create()
-            {
-                AddProfileViewModel addProfileViewModel = new AddProfileViewModel();
-                return View(addProfileViewModel);
 
-            }
-        
+
+
+
+        //Add/create Profile
+        public IActionResult Create()
+        {
+            AddProfileViewModel addProfileViewModel = new AddProfileViewModel();
+            return View(addProfileViewModel);
+
+        }
 
         [HttpPost]
         public IActionResult Create(AddProfileViewModel addProfileViewModel)
         {
+            List<Profile>? profiles = context.Profiles.ToList();
+            foreach (Profile p in profiles)
+            {
+                if (p.UserEmail == User.Identity.Name)
+                {
+                    ViewBag.error = "Sorry, you already have a profile with this account";
+                    return View("Create", addProfileViewModel);
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 Profile newProfile = new Profile
@@ -122,20 +170,22 @@ namespace Kapow.Controllers
                     FirstName = addProfileViewModel.FirstName,
                     HomeBase = addProfileViewModel.HomeBase,
                     ImageUrl = addProfileViewModel.ImageUrl,
+                    //Restaurants = ""
                     Restaurant1 = "",
                     Restaurant2 = "",
-                    Restaurant3 = ""
+                    Restaurant3 = "",
+                    Restaurant4 = "",
+                    Restaurant5 = "",
+                    UserEmail = User.Identity.Name
                 };
                 context.Profiles.Add(newProfile);
                 context.SaveChanges();
-                return Redirect("/profile");
+                return Redirect("/profile/about/" + newProfile.Id);
             }
             return View("Create", addProfileViewModel);
         }
 
-
-
-        //Delete Profiles
+        //Delete profiles
         [Authorize(Roles = "Admin")]
         public IActionResult Delete()
         {
@@ -161,21 +211,38 @@ namespace Kapow.Controllers
             return Redirect("/profile");
         }
 
+            public IActionResult Edit()
+            {
+                return View();
+            }
 
 
-        public IActionResult Edit()
-        {
-            return View();
+            //Show details of an individual profile
+            public IActionResult About(int? id)
+            {
+            List<Profile> profiles = context.Profiles.ToList();
+            if (id == null)
+            {
+                foreach (Profile profile in profiles)
+                {
+                    if (profile.UserEmail == User.Identity.Name)
+                    {
+                        id = profile.Id;
+                        Profile selectedProfile = context.Profiles.Find(id);
+                        return View(selectedProfile);
+                    }
+                }
+                return View("create");
+            }
+            else
+            {
+                Profile selectedProfile = context.Profiles.Find(id);
+                return View(selectedProfile);
+            }
+            }
         }
-
-
-        //Show details of an individual profile
-        public IActionResult About(int id)
-        {
-            Profile selectedProfile = context.Profiles.Find(id);
-            return View(selectedProfile);
-        }
-
-       
     }
-}
+
+    
+
+        

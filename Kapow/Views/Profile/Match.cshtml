@@ -1,25 +1,43 @@
-﻿@model List<Kapow.Models.Profile>
+@using Kapow.Models;
+@model List<Kapow.Models.Profile>
+
+ <h1>Choose Your Date, Mate</h1>
+    <br/>
+    <br/>
+<h3 style="color:red">
+    @if (ViewBag.error != null)
+    {
+        @ViewBag.error
+    }
+</h3>
+<br/>
 <form action="Match" method="post">
     <table class="table">
-        <tr>
-            <th>Profile Picture</th>
-            <th>Username</th>
-        </tr>
         @foreach (Profile profile in Model)
         {
-            <tr>
-                <td><img src="@profile.ImageUrl" width="170" height="100"/></td>
+            @if(profile.UserEmail == User.Identity.Name)
+            {
+            <tr hidden>
+                <td><img src="@profile.ImageUrl" width="170" height="100" /></td>
                 <td><a asp-controller="Profile" asp-action="About" asp-route-id="@profile.Id">@profile.UserName</a></td>
                 <td>
-                    <input type="radio" id="profile1" name="profileId1" value="@profile.Id">
-                    <label for="profile1">Match with them!</label><br>
+                    <label>
+                        <input type="radio" name="profileId1" value="@profile.Id" checked>
+                        Choose Profile!
+                    </label>
+                   
+                    <br>
                 </td>
             </tr>
+        }
         }
     </table>
     <br />
     <br />
-
+    @*@(isFirstOption1 ? "checked" : "") this is a ternary operator (if-else statement) has a condition, a value to return if true, and a value to return if false *@
+    @{
+        bool isFirstOption1 = true;
+    }
     <table class="table">
         <tr>
             <th>Profile Picture</th>
@@ -27,16 +45,24 @@
         </tr>
         @foreach (Profile profile in Model)
         {
+            @if(profile.UserEmail != User.Identity.Name)
+            {
             <tr>
-                <td><img src="@profile.ImageUrl" width="170" height="100"/></td>
+                <td><img src="@profile.ImageUrl" width="170" height="100" /></td>
                 <td><a asp-controller="Profile" asp-action="About" asp-route-id="@profile.Id">@profile.UserName</a></td>
                 <td>
-                   <input type="radio" id="profile2" name="profileId2" value="@profile.Id">
-                    <label for="profile2">Match with them!</label><br>
+                    <input type="radio" name="profileId2" value="@profile.Id" @(isFirstOption1 ? "checked" : "")>
+                    <label for="profile_@profile.Id">Choose Profile!</label>
+                    @if (isFirstOption1)
+                    {
+                        isFirstOption1 = false;
+                    }
+                    <br>
                 </td>
             </tr>
-        }
-    </table>
-    <br />
-    <input type="submit" value="Match Restaurant!" />
+            }
+            }
+        </table>
+        <br />
+        <input type="submit" value="Find a Match!" />
     </form>

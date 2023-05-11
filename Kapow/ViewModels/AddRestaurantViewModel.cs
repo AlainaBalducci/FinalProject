@@ -8,20 +8,26 @@ namespace Kapow.ViewModels
         public int ProfileId { get; set; }
         public Profile? Profile { get; set; }
         public List<SelectListItem>? Restaurants { get; set; }
-        public int RestaurantId { get; set; }
-        public int RestaurantId2 { get; set; }
-        public int RestaurantId3 { get; set; }
-        public AddRestaurantViewModel(Profile theProfile, List<RestaurantDto> possibleRestaurants) { 
+        public int? RestaurantId { get; set; }
+        public int? RestaurantId2 { get; set; }
+        public int? RestaurantId3 { get; set; }
+        public int? RestaurantId4 { get; set; }
+        public int? RestaurantId5 { get; set; }
+        public AddRestaurantViewModel(Profile theProfile, List<RestaurantDto> possibleRestaurants)
+        {
             Restaurants = new List<SelectListItem>();
-            foreach(var restaurant in possibleRestaurants)
+            foreach (var restaurant in possibleRestaurants)
             {
                 Restaurants.Add(new SelectListItem
                 {
                     Value = restaurant.Id.ToString(),
                     Text = restaurant.Name,
                 });
+
+
+
             }
-            Profile = theProfile;   
+            Profile = theProfile;
         }
         public AddRestaurantViewModel() { }
     }

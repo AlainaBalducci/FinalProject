@@ -52,26 +52,16 @@
                 </button>
 
                 @if (SignInManager.IsSignedIn(User))
-                 {
+                {
                     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Profile" asp-action="About" asp-route-id="">My Profile</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Profile" asp-action="Index">All Profiles</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Profile" asp-action="Match">Make A Match!</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Spin The Wheel!</a>
-                            </li>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="profile" asp-action="Create">Create Profile</a>
                         </ul>
                     </div>
-                    
-                 }
-                <partial name="_LoginPartial" />
+
+                }
+                <partial name="_LoginPartialCreate" />
             </div>
         </nav>
     </header>

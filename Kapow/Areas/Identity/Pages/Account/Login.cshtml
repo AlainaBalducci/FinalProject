@@ -1,4 +1,5 @@
 ﻿@page
+@using Kapow.Areas.Identity.Pages.Account;
 @model LoginModel
 @{
     ViewData["Title"] = "Log in";
@@ -6,16 +7,16 @@
 <head>
     <style>
         body {
-            /*background-color:plum;*/
             background-image: url('https://img.freepik.com/premium-vector/abstract-smooth-blur-purple-gradient-background-website-banner-paper-card-decorative-design_120819-485.jpg?w=1060');
             background-repeat: no-repeat;
             background-size: cover;
         }
         .title {
             text-align:center;
-            font-family: cursive;
+            font-family: 'Cambria Math';
             color: #dcdfe7cf;
             font-weight: 400;
+            font-size: 50px;
         }
         .couple-image {
             background-image: url('https://thumbs.dreamstime.com/b/cute-couple-smartphone-online-dating-concept-white-background-illustration-178317605.jpg');
@@ -41,7 +42,9 @@
             font-weight: 800;
         }
         .submit-button {
+            background-color: #502143;
             border-radius: 0.5rem;
+            border-color: #1d0726;
             margin-bottom: 12px;
         }
     </style>
@@ -50,25 +53,25 @@
     <h1 class="title">Welcome To Restaurant Roulette!</h1>
 @*<h2 class="title">Welcome To Restaurant Roulette</h2>*@
 <div class="row">
-    <div class="col-md-4">
+        <div class="col-md-4" style="margin-top: 4rem;">
         <section>
             <form id="account" method="post">
-                <h2>Log In</h2>
+                    <h2 style="color: #502143">Log In</h2>
                 <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-floating">
                     <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
                     <label asp-for="Input.Email" class="form-label"></label>
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    <span asp-validation-for="Input.Email" class="text-white"></span>
                 </div>
                 <div class="form-floating">
                     <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
                     <label asp-for="Input.Password" class="form-label"></label>
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    <span asp-validation-for="Input.Password" class="text-white"></span>
                 </div>
                 <div>
                     <div class="checkbox">
-                        <label asp-for="Input.RememberMe" class="form-label">
+                            <label asp-for="Input.RememberMe" class="form-label" style="color: #502143">
                             <input class="form-check-input" asp-for="Input.RememberMe" />
                             @Html.DisplayNameFor(m => m.Input.RememberMe)
                         </label>
