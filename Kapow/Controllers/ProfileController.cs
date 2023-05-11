@@ -55,7 +55,16 @@ namespace Kapow.Controllers
         public IActionResult Match()
         {
             List<Profile> profiles = context.Profiles.ToList();
-            return View(profiles);
+            foreach (Profile profile in profiles)
+            {
+                if (profile.UserEmail == User.Identity.Name)
+                {
+                    ViewBag.theProfile = profile;
+                    return View(profiles);
+                }
+            }
+            return View("Create");
+
         }
 
         [HttpPost]
@@ -211,19 +220,25 @@ namespace Kapow.Controllers
             //Show details of an individual profile
             public IActionResult About(int? id)
             {
-                if (id == null)
+            List<Profile> profiles = context.Profiles.ToList();
+            if (id == null)
+            {
+                foreach (Profile profile in profiles)
                 {
-                    List<Profile> profiles = context.Profiles.ToList();
-                    foreach (Profile profile in profiles)
+                    if (profile.UserEmail == User.Identity.Name)
                     {
-                        if (profile.UserEmail == User.Identity.Name)
-                        {
-                            id = profile.Id;
-                        }
+                        id = profile.Id;
+                        Profile selectedProfile = context.Profiles.Find(id);
+                        return View(selectedProfile);
                     }
                 }
+                return View("create");
+            }
+            else
+            {
                 Profile selectedProfile = context.Profiles.Find(id);
                 return View(selectedProfile);
+            }
             }
         }
     }
