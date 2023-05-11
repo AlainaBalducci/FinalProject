@@ -81,13 +81,12 @@
                     <td>@restaurant.Location  &nbsp; </td>
                     <td>@restaurant.FoodTag  &nbsp; </td>
                     <td><a href="@restaurant.Url" target="_blank">@restaurant.Url</a></td>
-                    <br />
                 </tr>
             }
         </table>
         <br /><br/>
         <label>
-            <h5>Choose which Restaurant to Edit&ensp;</h5>
+            <h5>Choose which Restaurant to Edit</h5>
         </label>
         <br/>
         <select name="userRestaurant">
@@ -97,7 +96,6 @@
             <option value="Restaurant4"> Restaurant 4: @ViewBag.theProfile.Restaurant4</option>
             <option value="Restaurant5"> Restaurant 5: @ViewBag.theProfile.Restaurant5</option>
         </select>
-          <p><a asp-route-id="@ViewBag.theProfile.Id" asp-controller="Profile" asp-action="About">Back to Profile</a></p>
         <br /><br/>
         <input type="submit" value="Add Selected Restaurant" class="btn btn-success">
     </form>
@@ -109,7 +107,8 @@ else
     <br />
     <p>No matching results</p>
 }
-<p><a asp-controller="Profile" asp-action="Index">Return</a></p>
+<p><a asp-route-id="@ViewBag.theProfile.Id" asp-controller="Profile" asp-action="About">Return to My Profile</a>
+<br/><a asp-controller="Profile" asp-action="Index">Return to All Profiles</a></p>
 
 
 
