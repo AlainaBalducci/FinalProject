@@ -19,8 +19,9 @@ namespace Kapow.Controllers
     public class ProfileController : Controller
     {
 
-        private ProfileDbContext context;
+
         string Baseurl = "https://localhost:7157";
+        private ProfileDbContext context;
         public ProfileController(ProfileDbContext dbContext)
         {
             context = dbContext;
@@ -30,11 +31,19 @@ namespace Kapow.Controllers
 
 
         //List All Users
-        public IActionResult Index()
+        public IActionResult Index(string? test)
         {
             // can add query to populate list with profiles that have a nonempty favorite restaurant -- maybe
             List<Profile> profiles = context.Profiles.ToList();
-            return View(profiles);
+            foreach (Profile profile in profiles)
+            {
+                if (profile.UserEmail == User.Identity.Name)
+                {
+                    ViewBag.theProfile = profile;
+                    return View(profiles);
+                }
+            }
+            return View("Create");
         }
 
 
@@ -44,8 +53,19 @@ namespace Kapow.Controllers
         [HttpGet]
         public IActionResult Match()
         {
+            //List<Profile> profiles = context.Profiles.ToList();
+            //return View(profiles);
+
             List<Profile> profiles = context.Profiles.ToList();
-            return View(profiles);
+            foreach (Profile profile in profiles)
+            {
+                if (profile.UserEmail == User.Identity.Name)
+                {
+                    ViewBag.theProfile = profile;
+                    return View(profiles);
+                }
+            }
+            return View("Create");
         }
 
         [HttpPost]
@@ -182,21 +202,45 @@ namespace Kapow.Controllers
             return Redirect("/profile");
         }
 
-            public IActionResult Edit()
+        public IActionResult Edit()
+        {
+            return View();
+        }
+
+
+        //Show details of an individual profile
+        public IActionResult About(int? id)
+        {
+
+            List<Profile> profiles = context.Profiles.ToList();
+            if (id == null)
             {
-                return View();
+                foreach (Profile profile in profiles)
+                {
+                    if (profile.UserEmail == User.Identity.Name)
+                    {
+                        id = profile.Id;
+                        Profile selectedProfile = context.Profiles.Find(id);
+                        return View(selectedProfile);
+                    }
+                    //else
+                    //{
+                    //    return View("create");
+                    //}
+                    //Profile selectedProfile = context.Profiles.Find(id);
+                    //return View(selectedProfile);
+                }
+                //Profile selectedProfile = context.Profiles.Find(id);
+                return View("create");
             }
-
-
-            //Show details of an individual profile
-            public IActionResult About(int id)
+            else
             {
                 Profile selectedProfile = context.Profiles.Find(id);
                 return View(selectedProfile);
             }
         }
     }
+}
 
-    
 
-        
+
